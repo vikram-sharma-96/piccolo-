@@ -1,0 +1,700 @@
+{
+  "id": "75a066c6-b077-4979-ba21-5352ddafbb00",
+  "grants": [
+    {
+      "id": "1c77ac5b-e563-4d13-852c-506e4a4831d8",
+      "scope": "provider",
+      "resources": [
+        "adal",
+        "index.html",
+        "check.cjs",
+        "preview.cjs"
+      ],
+      "revoked": true
+    },
+    {
+      "id": "66c7762a-5367-40fe-b4a5-4d610430ee30",
+      "scope": "artifacts",
+      "resources": [
+        "75a066c6-b077-4979-ba21-5352ddafbb00"
+      ],
+      "revoked": true
+    },
+    {
+      "id": "b49966d1-254d-4512-9b29-d85b5b8164ae",
+      "scope": "files",
+      "resources": [
+        "index.html",
+        "check.cjs",
+        "preview.cjs"
+      ],
+      "revoked": true
+    },
+    {
+      "id": "a8fc02ce-30e5-4013-98d6-53427a64b47f",
+      "scope": "edit",
+      "resources": [
+        "index.html",
+        "check.cjs",
+        "preview.cjs"
+      ],
+      "revoked": true
+    },
+    {
+      "id": "4f899c7d-fd1a-4aeb-9842-58814b469db9",
+      "scope": "terminal",
+      "resources": [
+        "0d019278e97cc29560348d2c"
+      ],
+      "revoked": true
+    },
+    {
+      "id": "e825ff6e-df4d-4c75-a073-d06ba725d6b2",
+      "scope": "edit",
+      "resources": [
+        "2514078d-3f1d-4b8c-b33a-794e25848bc8"
+      ],
+      "revoked": true
+    },
+    {
+      "id": "58924fc8-6200-422d-8010-96896223ddfe",
+      "scope": "tabs",
+      "resources": [
+        "913db387-6802-4886-b7ca-ac02372b0cb8"
+      ],
+      "revoked": true
+    },
+    {
+      "id": "04f6ea37-7d42-4a6d-bda9-70fd64b0a664",
+      "scope": "provider",
+      "resources": [
+        "0d03255d-1263-4b4f-93a1-ddaa93980c64"
+      ],
+      "revoked": true
+    }
+  ],
+  "capabilities": [
+    "browser.observe",
+    "browser.navigate",
+    "browser.interact",
+    "browser.wait",
+    "verify.page",
+    "browser.screenshot",
+    "file.read",
+    "git.diff",
+    "verify.file",
+    "file.write",
+    "terminal.start",
+    "terminal.input",
+    "terminal.read",
+    "preview.open",
+    "image.findings",
+    "artifact.note",
+    "verify.artifact"
+  ],
+  "instruction": "In the attached index.html change only the visible heading Answer 42 to Answer 43. Read current revision first; use file.write and inspect git.diff. Start the approved task terminal and run exactly node check.cjs, inspect terminal.read for CHECK_PASSED. Then run node preview.cjs in the same terminal and inspect output for PREVIEW_READY. Open http://127.0.0.1:64101/ with preview.open. Observe/wait for the preview and independently verify.page expected Answer 43. Finish with actual changes, validation observations and limits. Do not commit, push, install, deploy or edit the check/server scripts. Before finishing, capture the authorized preview using browser.screenshot, analyze that actual image with image.findings (source imageId returned by the screenshot) and record the visible heading and layout limitations. The user reviews the findings. Independently verify the findings artifact with verify.artifact, then finish. This screenshot is explicitly authorized for AdaL vision.",
+  "provider": "adal",
+  "model": "AdaL configured default",
+  "status": "completed",
+  "created": 1792918653503,
+  "updated": 1792918724195,
+  "plan": [
+    "Verify findings artifact",
+    "Finish"
+  ],
+  "steps": [
+    {
+      "id": "95da6f84-7839-48a1-985f-7863d921da24",
+      "objective": "Obtain current content and revision of index.html",
+      "capability": "file.read",
+      "status": "succeeded",
+      "started": 1792918669163,
+      "inputSummary": "{\"path\":\"index.html\"}",
+      "permission": "files",
+      "grantId": "b49966d1-254d-4512-9b29-d85b5b8164ae",
+      "verified": false,
+      "result": {
+        "path": "index.html",
+        "text": "<title>Agent coding fixture</title><h1>Answer 42</h1>",
+        "revision": "755e9e27adc9c1a0881958e5881e4764067d4286e68a498f783a2115d9e5f664",
+        "redacted": false
+      },
+      "ended": 1792918669230
+    },
+    {
+      "id": "2514078d-3f1d-4b8c-b33a-794e25848bc8",
+      "objective": "index.html saved with heading Answer 43",
+      "capability": "file.write",
+      "status": "succeeded",
+      "started": 1792918673607,
+      "inputSummary": "{\"path\":\"index.html\",\"text\":\"<title>Agent coding fixture</title><h1>Answer 43</h1>\",\"revision\":\"755e9e27adc9c1a0881958e5881e4764067d4286e68a498f783a2115d9e5f664\"}",
+      "permission": "edit",
+      "grantId": "a8fc02ce-30e5-4013-98d6-53427a64b47f",
+      "verified": false,
+      "result": {
+        "revision": "73da9c231103d19b2e9003d31a4f1bae5f390d8d409ea1d6f36108b70e847f18"
+      },
+      "ended": 1792918673673
+    },
+    {
+      "id": "aeb40b6f-f390-466f-8f0e-c36de7f0781f",
+      "objective": "Real git diff shows only Answer 42 changed to Answer 43",
+      "capability": "git.diff",
+      "status": "succeeded",
+      "started": 1792918677739,
+      "inputSummary": "{\"path\":\"index.html\"}",
+      "permission": "files",
+      "grantId": "b49966d1-254d-4512-9b29-d85b5b8164ae",
+      "verified": false,
+      "result": {
+        "text": "diff --git a/index.html b/index.html\nindex c785110..afbbd05 100644\n--- a/index.html\n+++ b/index.html\n@@ -1 +1 @@\n-<title>Agent coding fixture</title><h1>Answer 42</h1>\n\\ No newline at end of file\n+<title>Agent coding fixture</title><h1>Answer 43</h1>\n\\ No newline at end of file\n"
+      },
+      "ended": 1792918678048
+    },
+    {
+      "id": "a615112e-6413-4139-b637-2429005b0691",
+      "objective": "Approved task terminal started",
+      "capability": "terminal.start",
+      "status": "succeeded",
+      "started": 1792918681930,
+      "inputSummary": "{}",
+      "permission": "terminal",
+      "grantId": "4f899c7d-fd1a-4aeb-9842-58814b469db9",
+      "verified": false,
+      "result": {
+        "running": true
+      },
+      "ended": 1792918682193
+    },
+    {
+      "id": "904e6fb8-a5ec-4541-a645-bd85ee0b64b3",
+      "objective": "node check.cjs submitted in the task terminal",
+      "capability": "terminal.input",
+      "status": "succeeded",
+      "started": 1792918686135,
+      "inputSummary": "{\"text\":\"node check.cjs\"}",
+      "permission": "terminal",
+      "grantId": "4f899c7d-fd1a-4aeb-9842-58814b469db9",
+      "verified": false,
+      "result": {
+        "sent": true
+      },
+      "ended": 1792918686162
+    },
+    {
+      "id": "d7f9d233-625d-4e8b-8e6b-fd4f324a8897",
+      "objective": "Terminal output shows CHECK_PASSED",
+      "capability": "terminal.read",
+      "status": "succeeded",
+      "started": 1792918689971,
+      "inputSummary": "{}",
+      "permission": "terminal",
+      "grantId": "4f899c7d-fd1a-4aeb-9842-58814b469db9",
+      "verified": false,
+      "result": {
+        "text": "\u001b[?9001h\u001b[?1004h\u001b[?25l\u001b[2J\u001b[m\u001b[HPS C:\\Github Projects\\Piccolo\\test-results\\agent-coding-1792918648827\\project>\u001b[1C\u001b]0;C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe\u0007\u001b[?25h\u001b[?25l\u001b[93mnode \u001b[37mcheck.\u001b[?25h\u001b[?25l\u001b[m\u001b[93m\u001b[1;80Hnode \u001b[37mcheck.cjs\r\n\u001b[?25h\u001b[mCHECK_PASSED\r\nPS C:\\Github Projects\\Piccolo\\test-results\\agent-coding-1792918648827\\project> ",
+        "running": true
+      },
+      "ended": 1792918690017
+    },
+    {
+      "id": "048162c1-cbb6-4200-835d-bf8f8a5dd8aa",
+      "objective": "node preview.cjs submitted in the same task terminal",
+      "capability": "terminal.input",
+      "status": "succeeded",
+      "started": 1792918693809,
+      "inputSummary": "{\"text\":\"node preview.cjs\"}",
+      "permission": "terminal",
+      "grantId": "4f899c7d-fd1a-4aeb-9842-58814b469db9",
+      "verified": false,
+      "result": {
+        "sent": true
+      },
+      "ended": 1792918693829
+    },
+    {
+      "id": "5c7bad1f-16e0-459c-b1c1-a480d242f380",
+      "objective": "Terminal output shows PREVIEW_READY",
+      "capability": "terminal.read",
+      "status": "succeeded",
+      "started": 1792918697575,
+      "inputSummary": "{}",
+      "permission": "terminal",
+      "grantId": "4f899c7d-fd1a-4aeb-9842-58814b469db9",
+      "verified": false,
+      "result": {
+        "text": "\u001b[?9001h\u001b[?1004h\u001b[?25l\u001b[2J\u001b[m\u001b[HPS C:\\Github Projects\\Piccolo\\test-results\\agent-coding-1792918648827\\project>\u001b[1C\u001b]0;C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe\u0007\u001b[?25h\u001b[?25l\u001b[93mnode \u001b[37mcheck.\u001b[?25h\u001b[?25l\u001b[m\u001b[93m\u001b[1;80Hnode \u001b[37mcheck.cjs\r\n\u001b[?25h\u001b[mCHECK_PASSED\r\nPS C:\\Github Projects\\Piccolo\\test-results\\agent-coding-1792918648827\\project> \u001b[?25l\u001b[93mnode \u001b[37mpreview.cjs\r\n\u001b[?25h\u001b[mPREVIEW_READY\r\n",
+        "running": true
+      },
+      "ended": 1792918697596
+    },
+    {
+      "id": "3bb61bc9-d6c4-498d-b8b9-f50d714224e7",
+      "objective": "Preview tab opened for http://127.0.0.1:64101/",
+      "capability": "preview.open",
+      "status": "succeeded",
+      "started": 1792918700509,
+      "inputSummary": "{\"url\":\"http://127.0.0.1:64101/\"}",
+      "permission": "tabs",
+      "verified": false,
+      "result": {
+        "tabId": "913db387-6802-4886-b7ca-ac02372b0cb8",
+        "url": "http://127.0.0.1:64101/"
+      },
+      "ended": 1792918700585
+    },
+    {
+      "id": "474a31bf-bd71-4f82-ba09-fb2ca752fd84",
+      "objective": "Preview tab shows Answer 43 text",
+      "capability": "browser.wait",
+      "status": "succeeded",
+      "started": 1792918703675,
+      "inputSummary": "{\"tabId\":\"913db387-6802-4886-b7ca-ac02372b0cb8\",\"text\":\"Answer 43\"}",
+      "permission": "tabs",
+      "grantId": "58924fc8-6200-422d-8010-96896223ddfe",
+      "verified": false,
+      "result": {
+        "found": true
+      },
+      "ended": 1792918703691
+    },
+    {
+      "id": "47e4bed5-49ed-4ec3-857d-190be41cd8ad",
+      "objective": "Independent page verification that tab shows Answer 43",
+      "capability": "verify.page",
+      "status": "succeeded",
+      "started": 1792918706819,
+      "inputSummary": "{\"tabId\":\"913db387-6802-4886-b7ca-ac02372b0cb8\",\"expected\":\"Answer 43\"}",
+      "permission": "tabs",
+      "grantId": "58924fc8-6200-422d-8010-96896223ddfe",
+      "verified": true,
+      "result": {
+        "verified": true,
+        "url": "http://127.0.0.1:64101/",
+        "expected": "Answer 43",
+        "text": "Answer 43"
+      },
+      "ended": 1792918706834
+    },
+    {
+      "id": "d7143dca-dda5-42d6-86c7-e1ccaa871f4f",
+      "objective": "Screenshot of the authorized preview tab captured with an imageId",
+      "capability": "browser.screenshot",
+      "status": "succeeded",
+      "started": 1792918709828,
+      "inputSummary": "{\"tabId\":\"913db387-6802-4886-b7ca-ac02372b0cb8\"}",
+      "permission": "provider",
+      "grantId": "1c77ac5b-e563-4d13-852c-506e4a4831d8",
+      "verified": false,
+      "result": {
+        "imageId": "42f6cd49-8f01-4e54-b260-53b68f35bada",
+        "title": "Tab screenshot",
+        "source": {
+          "kind": "tab",
+          "id": "913db387-6802-4886-b7ca-ac02372b0cb8",
+          "title": "Agent coding fixture"
+        }
+      },
+      "ended": 1792918709939
+    },
+    {
+      "id": "0d03255d-1263-4b4f-93a1-ddaa93980c64",
+      "objective": "Image findings artifact recorded for the screenshot",
+      "capability": "image.findings",
+      "status": "succeeded",
+      "started": 1792918715188,
+      "inputSummary": "{\"imageId\":\"42f6cd49-8f01-4e54-b260-53b68f35bada\",\"findings\":[\"The screenshot shows a single bold serif heading reading 'Answer 43' at the top-left of the page.\",\"The rest of the viewport is blank white, with no other visible text, images, controls or styling.\",\"The heading sits in the default browser margin with default unstyled h1 rendering; no o",
+      "permission": "provider",
+      "grantId": "1c77ac5b-e563-4d13-852c-506e4a4831d8",
+      "verified": false,
+      "result": {
+        "artifactId": "574516b4-587a-4464-9639-22499ff395ea",
+        "findings": [
+          "The screenshot shows a single bold serif heading reading 'Answer 43' at the top-left of the page.",
+          "The rest of the viewport is blank white, with no other visible text, images, controls or styling.",
+          "The heading sits in the default browser margin with default unstyled h1 rendering; no old text 'Answer 42' is visible."
+        ],
+        "userReviewed": true
+      },
+      "ended": 1792918715238
+    },
+    {
+      "id": "fe8f1256-38f3-4b47-825b-1783651de7bd",
+      "objective": "Findings artifact provenance and storage independently verified",
+      "capability": "verify.artifact",
+      "status": "succeeded",
+      "started": 1792918718348,
+      "inputSummary": "{\"artifactId\":\"574516b4-587a-4464-9639-22499ff395ea\"}",
+      "permission": "artifacts",
+      "grantId": "66c7762a-5367-40fe-b4a5-4d610430ee30",
+      "verified": true,
+      "result": {
+        "verified": true,
+        "artifactId": "574516b4-587a-4464-9639-22499ff395ea",
+        "scope": "Artifact storage hash and attached source provenance only; findings require user review."
+      },
+      "ended": 1792918718389
+    }
+  ],
+  "events": [
+    {
+      "time": 1792918653503,
+      "kind": "planning",
+      "detail": "Planning with adal. Only attached context is available."
+    },
+    {
+      "time": 1792918669163,
+      "kind": "action",
+      "detail": "Obtain current content and revision of index.html",
+      "stepId": "95da6f84-7839-48a1-985f-7863d921da24"
+    },
+    {
+      "time": 1792918669222,
+      "kind": "observation",
+      "detail": "Result recorded.",
+      "stepId": "95da6f84-7839-48a1-985f-7863d921da24"
+    },
+    {
+      "time": 1792918669230,
+      "kind": "checkpoint",
+      "detail": "Checkpoint saved; actions are never automatically replayed."
+    },
+    {
+      "time": 1792918673607,
+      "kind": "action",
+      "detail": "index.html saved with heading Answer 43",
+      "stepId": "2514078d-3f1d-4b8c-b33a-794e25848bc8"
+    },
+    {
+      "time": 1792918673667,
+      "kind": "observation",
+      "detail": "Result recorded.",
+      "stepId": "2514078d-3f1d-4b8c-b33a-794e25848bc8"
+    },
+    {
+      "time": 1792918673673,
+      "kind": "checkpoint",
+      "detail": "Checkpoint saved; actions are never automatically replayed."
+    },
+    {
+      "time": 1792918677739,
+      "kind": "action",
+      "detail": "Real git diff shows only Answer 42 changed to Answer 43",
+      "stepId": "aeb40b6f-f390-466f-8f0e-c36de7f0781f"
+    },
+    {
+      "time": 1792918678044,
+      "kind": "observation",
+      "detail": "Result recorded.",
+      "stepId": "aeb40b6f-f390-466f-8f0e-c36de7f0781f"
+    },
+    {
+      "time": 1792918678048,
+      "kind": "checkpoint",
+      "detail": "Checkpoint saved; actions are never automatically replayed."
+    },
+    {
+      "time": 1792918681930,
+      "kind": "action",
+      "detail": "Approved task terminal started",
+      "stepId": "a615112e-6413-4139-b637-2429005b0691"
+    },
+    {
+      "time": 1792918682183,
+      "kind": "observation",
+      "detail": "Result recorded.",
+      "stepId": "a615112e-6413-4139-b637-2429005b0691"
+    },
+    {
+      "time": 1792918682193,
+      "kind": "checkpoint",
+      "detail": "Checkpoint saved; actions are never automatically replayed."
+    },
+    {
+      "time": 1792918686135,
+      "kind": "action",
+      "detail": "node check.cjs submitted in the task terminal",
+      "stepId": "904e6fb8-a5ec-4541-a645-bd85ee0b64b3"
+    },
+    {
+      "time": 1792918686156,
+      "kind": "observation",
+      "detail": "Result recorded.",
+      "stepId": "904e6fb8-a5ec-4541-a645-bd85ee0b64b3"
+    },
+    {
+      "time": 1792918686162,
+      "kind": "checkpoint",
+      "detail": "Checkpoint saved; actions are never automatically replayed."
+    },
+    {
+      "time": 1792918689971,
+      "kind": "action",
+      "detail": "Terminal output shows CHECK_PASSED",
+      "stepId": "d7f9d233-625d-4e8b-8e6b-fd4f324a8897"
+    },
+    {
+      "time": 1792918690008,
+      "kind": "observation",
+      "detail": "Result recorded.",
+      "stepId": "d7f9d233-625d-4e8b-8e6b-fd4f324a8897"
+    },
+    {
+      "time": 1792918690017,
+      "kind": "checkpoint",
+      "detail": "Checkpoint saved; actions are never automatically replayed."
+    },
+    {
+      "time": 1792918693810,
+      "kind": "action",
+      "detail": "node preview.cjs submitted in the same task terminal",
+      "stepId": "048162c1-cbb6-4200-835d-bf8f8a5dd8aa"
+    },
+    {
+      "time": 1792918693824,
+      "kind": "observation",
+      "detail": "Result recorded.",
+      "stepId": "048162c1-cbb6-4200-835d-bf8f8a5dd8aa"
+    },
+    {
+      "time": 1792918693829,
+      "kind": "checkpoint",
+      "detail": "Checkpoint saved; actions are never automatically replayed."
+    },
+    {
+      "time": 1792918697575,
+      "kind": "action",
+      "detail": "Terminal output shows PREVIEW_READY",
+      "stepId": "5c7bad1f-16e0-459c-b1c1-a480d242f380"
+    },
+    {
+      "time": 1792918697590,
+      "kind": "observation",
+      "detail": "Result recorded.",
+      "stepId": "5c7bad1f-16e0-459c-b1c1-a480d242f380"
+    },
+    {
+      "time": 1792918697596,
+      "kind": "checkpoint",
+      "detail": "Checkpoint saved; actions are never automatically replayed."
+    },
+    {
+      "time": 1792918700510,
+      "kind": "action",
+      "detail": "Preview tab opened for http://127.0.0.1:64101/",
+      "stepId": "3bb61bc9-d6c4-498d-b8b9-f50d714224e7"
+    },
+    {
+      "time": 1792918700572,
+      "kind": "observation",
+      "detail": "Result recorded.",
+      "stepId": "3bb61bc9-d6c4-498d-b8b9-f50d714224e7"
+    },
+    {
+      "time": 1792918700585,
+      "kind": "checkpoint",
+      "detail": "Checkpoint saved; actions are never automatically replayed."
+    },
+    {
+      "time": 1792918703675,
+      "kind": "action",
+      "detail": "Preview tab shows Answer 43 text",
+      "stepId": "474a31bf-bd71-4f82-ba09-fb2ca752fd84"
+    },
+    {
+      "time": 1792918703687,
+      "kind": "observation",
+      "detail": "Result recorded.",
+      "stepId": "474a31bf-bd71-4f82-ba09-fb2ca752fd84"
+    },
+    {
+      "time": 1792918703691,
+      "kind": "checkpoint",
+      "detail": "Checkpoint saved; actions are never automatically replayed."
+    },
+    {
+      "time": 1792918706819,
+      "kind": "action",
+      "detail": "Independent page verification that tab shows Answer 43",
+      "stepId": "47e4bed5-49ed-4ec3-857d-190be41cd8ad"
+    },
+    {
+      "time": 1792918706831,
+      "kind": "verification",
+      "detail": "Observable check passed.",
+      "stepId": "47e4bed5-49ed-4ec3-857d-190be41cd8ad"
+    },
+    {
+      "time": 1792918706834,
+      "kind": "checkpoint",
+      "detail": "Checkpoint saved; actions are never automatically replayed."
+    },
+    {
+      "time": 1792918709828,
+      "kind": "action",
+      "detail": "Screenshot of the authorized preview tab captured with an imageId",
+      "stepId": "d7143dca-dda5-42d6-86c7-e1ccaa871f4f"
+    },
+    {
+      "time": 1792918709931,
+      "kind": "observation",
+      "detail": "Result recorded.",
+      "stepId": "d7143dca-dda5-42d6-86c7-e1ccaa871f4f"
+    },
+    {
+      "time": 1792918709939,
+      "kind": "checkpoint",
+      "detail": "Checkpoint saved; actions are never automatically replayed."
+    },
+    {
+      "time": 1792918715188,
+      "kind": "action",
+      "detail": "Image findings artifact recorded for the screenshot",
+      "stepId": "0d03255d-1263-4b4f-93a1-ddaa93980c64"
+    },
+    {
+      "time": 1792918715232,
+      "kind": "observation",
+      "detail": "Result recorded.",
+      "stepId": "0d03255d-1263-4b4f-93a1-ddaa93980c64"
+    },
+    {
+      "time": 1792918715238,
+      "kind": "checkpoint",
+      "detail": "Checkpoint saved; actions are never automatically replayed."
+    },
+    {
+      "time": 1792918718348,
+      "kind": "action",
+      "detail": "Findings artifact provenance and storage independently verified",
+      "stepId": "fe8f1256-38f3-4b47-825b-1783651de7bd"
+    },
+    {
+      "time": 1792918718384,
+      "kind": "verification",
+      "detail": "Observable check passed.",
+      "stepId": "fe8f1256-38f3-4b47-825b-1783651de7bd"
+    },
+    {
+      "time": 1792918718389,
+      "kind": "checkpoint",
+      "detail": "Checkpoint saved; actions are never automatically replayed."
+    },
+    {
+      "time": 1792918724195,
+      "kind": "verification",
+      "detail": "Completion report records the actual operations and verification."
+    }
+  ],
+  "sources": [
+    {
+      "kind": "file",
+      "id": "index.html",
+      "title": "index.html",
+      "revision": "755e9e27adc9c1a0881958e5881e4764067d4286e68a498f783a2115d9e5f664"
+    },
+    {
+      "kind": "file",
+      "id": "check.cjs",
+      "title": "check.cjs"
+    },
+    {
+      "kind": "file",
+      "id": "preview.cjs",
+      "title": "preview.cjs"
+    },
+    {
+      "kind": "tab",
+      "id": "913db387-6802-4886-b7ca-ac02372b0cb8",
+      "title": "Local project preview"
+    },
+    {
+      "kind": "image",
+      "id": "42f6cd49-8f01-4e54-b260-53b68f35bada",
+      "title": "Tab screenshot"
+    }
+  ],
+  "artifacts": [
+    {
+      "id": "42f6cd49-8f01-4e54-b260-53b68f35bada",
+      "taskId": "75a066c6-b077-4979-ba21-5352ddafbb00",
+      "mime": "image/png",
+      "sha256": "2ebcea2c140f23f601c2d658c4b9adeafbc8519aed810f5690e357b1cae80000",
+      "created": 1792918709931,
+      "sources": [
+        {
+          "kind": "tab",
+          "id": "913db387-6802-4886-b7ca-ac02372b0cb8",
+          "title": "Agent coding fixture"
+        }
+      ],
+      "verified": false,
+      "title": "Tab screenshot"
+    },
+    {
+      "id": "574516b4-587a-4464-9639-22499ff395ea",
+      "taskId": "75a066c6-b077-4979-ba21-5352ddafbb00",
+      "mime": "application/json",
+      "sha256": "63495ec56e09556037e6fe3d96da5917b14a3e093cac3d5ac350093c3046f38d",
+      "created": 1792918715221,
+      "sources": [
+        {
+          "kind": "image",
+          "id": "42f6cd49-8f01-4e54-b260-53b68f35bada",
+          "title": "Tab screenshot"
+        }
+      ],
+      "verified": true,
+      "title": "Image findings"
+    },
+    {
+      "id": "4a785ae1-d57d-4d74-92ca-d953ebe6aa98",
+      "taskId": "75a066c6-b077-4979-ba21-5352ddafbb00",
+      "mime": "application/json",
+      "sha256": "6cd3fa2cb948eb1553718be05314df3bac777ae7e35d945deec60d48a627b6c7",
+      "created": 1792918724195,
+      "sources": [
+        {
+          "kind": "file",
+          "id": "index.html",
+          "title": "index.html",
+          "revision": "755e9e27adc9c1a0881958e5881e4764067d4286e68a498f783a2115d9e5f664"
+        },
+        {
+          "kind": "file",
+          "id": "check.cjs",
+          "title": "check.cjs"
+        },
+        {
+          "kind": "file",
+          "id": "preview.cjs",
+          "title": "preview.cjs"
+        },
+        {
+          "kind": "tab",
+          "id": "913db387-6802-4886-b7ca-ac02372b0cb8",
+          "title": "Local project preview"
+        },
+        {
+          "kind": "image",
+          "id": "42f6cd49-8f01-4e54-b260-53b68f35bada",
+          "title": "Tab screenshot"
+        }
+      ],
+      "verified": true,
+      "title": "Completion report"
+    }
+  ],
+  "calls": 15,
+  "maxCalls": 22,
+  "checkpoint": {
+    "next": 14,
+    "replay": false
+  },
+  "pendingApproval": {
+    "id": "04f6ea37-7d42-4a6d-bda9-70fd64b0a664",
+    "objective": "Review image findings",
+    "scope": "provider",
+    "status": "allowed"
+  }
+}

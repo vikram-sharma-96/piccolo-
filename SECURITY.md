@@ -1,5 +1,17 @@
 # Security
 
+## Agent workspace (0.7)
+
+Current GTM source extends the task-owned writer to plaintext Markdown/PNG. It restricts the workflow registry to attached-page observation, approved local draft writes, one approved banner and verification. Text-provider callbacks remain deny-all. A separate banner provider instance permits only the single exact `generate_image` request already approved through the existing native dialog; changed paths/arguments and all other tools are denied. Sending/publishing is unavailable in this draft-only mode. A failed or interrupted image request cannot be silently replayed or replaced by a placeholder. See [GTM trust boundaries and evidence](GTM_WORKFLOW.md).
+
+Current source adds explicitly approved task CSV files: these ordinary spreadsheets are plaintext in the owned task artifact folder. Their expected snapshots/checkpoints remain encrypted. CSV writing requires the existing file-edit opt-in and native review; paths are generated under the task UUID, links/hardlinks are refused, formula-like values become literal text, and verification rereads disk cells. See [spreadsheet behavior and limits](SPREADSHEET_CAPABILITY.md).
+
+AdaL is a trusted external runtime, launched only for a user-started task. Piccolo disables its default tools and denies all tool callbacks. Model output is untrusted JSON: the main process validates each capability against exact attached tabs/files, live MCP/project grants and native approvals. Browser control cannot inspect or operate Agent's own provider consent UI. New origins, file replacement, terminal input and image findings require applicable native consent. Private windows have no Agent access.
+
+Task/artifact contents use main-process Windows account encryption; no provider credentials enter browser pages, renderer storage or MCP configuration. Default exports contain metadata only. Known-pattern redaction is limited and screenshots have no automatic secret detector. AdaL/provider retention and user-selected exports are separate from Piccolo deletion. See [Agent boundaries and controls](AGENT_USAGE.md).
+
+Approved terminal commands run with Windows user privileges and can affect files/processes beyond the project. Client shell ownership prevents another client from reading or typing into that shell; it is not an OS sandbox. Cancellation stops owned processes/waits but cannot undo completed external effects. Interrupted tasks never replay automatically, and old task grants are revoked on recovery. The external AdaL install, global runtime configuration and same-user process/profile compromise remain outside this isolation boundary.
+
 ## Download consent in 0.4
 
 Central main-process gating now pauses website downloads into owned UUID staging files until explicit approval; risky filename categories require an additional native warning. Floods are canceled/coalesced, with separate revocable multiple-download permission. Unknown sources are denied. Cancellation stops the DownloadItem and freezes terminal state before late callbacks; record removal is separate. Files are never automatically opened/executed, and completed destinations are never overwritten or automatically deleted. This is not malware/reputation scanning, and Electron's hook cannot promise zero bytes before pause. Crash-time staging/final-copy limitations and exact limits are documented in DOWNLOAD_PROTECTION.md.

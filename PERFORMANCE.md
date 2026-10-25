@@ -1,5 +1,36 @@
 # Performance observations · 0.4 maintenance run
 
+## Agent workspace 0.7 · 25 October 2026
+
+Fresh pre-change 0.6 baseline: `test-results/agent-before-0.6.0.json`, Windows 11, Ryzen 7 6800H, 16 logical CPUs, approximately 7.2 GiB physical RAM available to the host. The baseline warm, debugger-attached startup was 958 ms; idle gradient new tab averaged 411 MiB summed Electron working set, one static local page 513 MiB and five static pages 908 MiB. This is not a cold-boot or low-spec certification.
+
+The same packaged-browser harness after the change (`test-results/agent-after-0.7.0.json`) observed:
+
+| Browser-only state | 0.6 baseline | 0.7 |
+|---|---:|---:|
+| Idle gradient new tab | 411 MiB | 418 MiB |
+| One static page | 513 MiB | 516 MiB |
+| Five static pages | 908 MiB | 905 MiB |
+| After closing four tabs | 523 MiB | 519 MiB |
+| After ten tab cycles | 522 MiB | 528 MiB |
+
+The single instrumented startup observation rose from 958 to 1,249 ms. This is a measured increase, not evidence of a causal regression or an improvement; repeated controlled startup trials are still needed. Short 0.7 Electron CPU averages were 0.051%, 0.119%, 0.081%, 0.064% and 0.828% respectively. Wallpaper pause/hidden/minimized/low-power checks passed. These are observations on this active development host, not hard resource guarantees.
+
+Actual packaged 0.7 AdaL observations (`docs/evidence/0.7/first-round-performance.json`, three short samples each; the separate final verification records its own samples):
+
+| State | Electron working set | Owned Windows process-tree working set | Electron reported CPU |
+|---|---:|---:|---:|
+| Attached-image task, actual vision query planning | 629 MiB | 963 MiB | 0.011% |
+| After image task completion | 570 MiB | 672 MiB | 0.095% |
+| Active text provider before cancel | 654 MiB | 1,016 MiB | 0.109% |
+| After provider cancellation/cleanup | 660 MiB | 759 MiB | 0.075% |
+
+The owned-tree column includes AdaL/runtime/shell descendants that Electron's counters omit. Working sets may double-count shared pages. CPU percentages use Electron's normalization, exclude external AdaL CPU and are short samples; the evidence also records a rough matched-PID single-core OS CPU estimate. PowerShell inventory itself adds instrumentation pressure outside the measured tree. The post-task states retain different tabs, MCP and history and are not equivalent to fresh startup. The test verifies the observed AdaL PID has actually exited after cancellation. Coding smoke separately measures the real workbench, terminal/preview and cleanup; concurrent tasks are not supported.
+
+Including external descendants, the approximate OS CPU samples were **83% of one core during vision planning** and **91% during the active text query**, falling to about 1.1% and 2.2% after their respective cleanup states. On this 16-logical-CPU host these are not 83–91% of total machine capacity. They do show that Electron's near-zero counters alone would substantially understate active AdaL work. No claim of low active-provider CPU is made.
+
+Ordinary browsing starts no AdaL subprocess or Code host. Opening Agent lazily loads its adapter; actual provider work starts only after task consent. There is no periodic screenshot capture or permanent animation loop. Task concurrency, image/context/output sizes, event count and retained tasks are bounded. Encrypted artifact blobs are written once instead of re-encrypting screenshots at every step. Active Code plus AdaL has a material RAM cost; close Code and stop/disconnect Agent when finished. Long-duration idle, battery usage, repeated provider/crash soak and other hardware remain unmeasured.
+
 Measured 25 October 2026 IST using the final packaged application, with fresh profiles on the same Windows 11 / Ryzen 7 6800H host (16 logical CPUs; 7.19 GiB physical RAM reported). No other Piccolo test suites ran during this measurement. Raw evidence: <code>test-results/baseline-0.4.0.json</code> (preserved 0.3 package) and <code>test-results/after-0.4.0.json</code> (0.4).
 
 The existing method is unchanged: warm file caches, Playwright/debugger overhead, two-second settle and three one-second process snapshots per scenario. Memory is the sum of per-process working sets, which can double-count shared pages. CPU is the sum of Electron-reported process percentages. These are short observations, not battery tests or low-spec hardware guarantees.

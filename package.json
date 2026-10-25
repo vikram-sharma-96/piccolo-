@@ -1,7 +1,7 @@
 {
   "name": "piccolo-browser",
   "productName": "Piccolo",
-  "version": "0.6.0",
+  "version": "0.7.0",
   "private": true,
   "description": "A personal desktop browser",
   "author": "Piccolo",
@@ -60,7 +60,7 @@
     "appId": "app.piccolo.browser",
     "productName": "Piccolo",
     "directories": {
-      "output": "release/0.6.0"
+      "output": "release/0.7.0"
     },
     "files": [
       "dist/main.cjs",
@@ -75,7 +75,8 @@
       "dist/coding.cjs",
       "dist/coding-preload.cjs",
       "dist/coding-terminal.cjs",
-      "dist/code/**/*"
+      "dist/code/**/*",
+      "dist/agent.cjs"
     ],
     "asar": true,
     "win": {

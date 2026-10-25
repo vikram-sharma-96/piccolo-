@@ -220,6 +220,7 @@ async function requestApproval(
   }
 }
 async function stopMcpImpl() {
+  await require.cache[path.join(__dirname,'agent.cjs')]?.exports.shutdownAgents();
   epoch++;
   serverController.abort(Error("MCP server disabled."));
   for (const control of principalControllers.values())
@@ -377,6 +378,7 @@ async function startMcpImpl(b: Browser) {
         );
         let onAbort: () => void = () => {};
         try {
+          if(name==='piccolo_ui'&&(b.active()?.url==='piccolo://agents'||b.state.agentTask))throw Error('Agent controls and task data require direct user interaction. Browser-control grants cannot start agents or approve provider transmission.');
           if (
             name === "piccolo_ui" &&
             ["read", "controls", "screenshot"].includes(args.action) &&
@@ -801,16 +803,20 @@ async function startMcpImpl(b: Browser) {
         description:
           "Wait up to 15 seconds for a CSS selector or visible text on the active webpage.",
         inputSchema: z.object({
+          tabId:z.string().max(100).optional(),
           selector: z.string().max(500).optional(),
           text: z.string().max(1000).optional(),
           timeoutMs: z.number().int().min(50).max(15000).default(5000),
         }),
       },
-      async ({ selector, text, timeoutMs }, ctx) => {
+      async ({ selector, text, timeoutMs,tabId:requestedTabId }, ctx) => {
         if (!selector && !text) throw Error("Provide selector or text.");
         const b = activeBrowser();
         if (!b) throw Error("No normal Piccolo window is available.");
-        const wc = b.activeContents();
+        const target=findTab(b,requestedTabId);
+        if(!target||!webURL(target.url))throw Error('Select an HTTP(S) wait target.');
+        if(target.id!==b.state.activeId)b.activate(target.id);
+        const wc = b.views.get(target.id)?.webContents;
         if (!wc) throw Error("The selected webpage is not loaded.");
         await approved(
           b,
@@ -818,7 +824,7 @@ async function startMcpImpl(b: Browser) {
           JSON.stringify({ selector, text, timeoutMs }),
           ctx.mcpReq.signal,
         );
-        const tabId = b.active().id;
+        const tabId = target.id;
         const script = `!!(${selector ? `document.querySelector(${JSON.stringify(selector)})` : `((document.body?.innerText || "").includes(${JSON.stringify(text)}))`})`;
         const end = Date.now() + timeoutMs;
         while (Date.now() < end) {
@@ -1259,6 +1265,7 @@ export async function handleMcp(b: Browser, action: string, value: unknown) {
       ?.abort(Error("Client permissions changed or revoked."));
     principalControllers.delete(id);
     if (action === "revoke-client" || action === "restore-client") {
+      void require.cache[path.join(__dirname,'agent.cjs')]?.exports.revokeAgent({principal:id});
       const grants = await b.store.get<any[]>("coding-grants", []);
       await b.store.set(
         "coding-grants",

@@ -1,0 +1,13 @@
+import {readFile,writeFile,mkdir,copyFile} from 'node:fs/promises';
+import path from 'node:path';
+import assert from 'node:assert/strict';
+const read=async file=>JSON.parse(await readFile(file,'utf8'));
+const latest=await read('test-results/gtm-live-latest.json');assert.ok(latest.results.every(result=>result.status==='Passed'));
+const task=await read(path.join(latest.profile,'task.json')),run=await read(path.join(latest.profile,'report.json'));
+assert.equal(task.status,'completed');const check=task.steps.findLast(step=>step.capability==='verify_gtm').result;assert.equal(check.verified,true);
+const root=path.resolve('docs/evidence/gtm');await mkdir(root,{recursive:true});
+for(const title of ['positioning-brief.md','launch-post.md','email-draft.md','launch-banner.png','gtm-complete.png'])await copyFile(path.join(latest.profile,title),path.join(root,title));
+await writeFile(path.join(root,'verification.json'),JSON.stringify(check,null,2));
+await writeFile(path.join(root,'claim-records.json'),JSON.stringify(task.artifacts.find(artifact=>artifact.role==='positioning-brief').claims,null,2));
+await writeFile(path.join(root,'run-report.json'),JSON.stringify({date:new Date().toISOString(),status:task.status,provider:'Existing Piccolo AdalProvider via real AdaL SDK',modelDecisions:task.calls,attachedUrls:run.urls,actualSources:task.sources,artifactDirectory:path.join(latest.profile,'agent/tasks',task.id),artifacts:task.artifacts.filter(artifact=>artifact.role).map(artifact=>({role:artifact.role,fileName:artifact.fileName,title:artifact.title,sha256:artifact.sha256,verified:artifact.verified,generation:artifact.generation})),steps:task.steps.map(step=>({capability:step.capability,status:step.status,verified:step.verified,error:step.error})),nativeApprovalCalls:run.approvals,approvalHandling:'Native dialog functions were programmatically approved by the isolated live test harness; production approval remains required.',capabilities:task.capabilities,unknownEvents:task.events.filter(event=>event.detail.includes(' is unknown:')),draftedOnly:true,sentOrPublished:false,verification:check},null,2));
+console.log('Retained actual GTM files and evidence in '+root);

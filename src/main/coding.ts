@@ -50,6 +50,7 @@ let selecting = false;
 const activeSignals = new Map<string, Set<AbortController>>();
 const clientScope = new AsyncLocalStorage<string>();
 const terminalClients = new Set<string>();
+let terminalOwner: string | undefined;
 const events: { time: number; status: string; client: string }[] = [];
 const generation = () => current;
 const profile = () => app.getPath("userData");
@@ -104,7 +105,7 @@ export function syncBounds(b: Browser) {
     const [width, height] = b.win.getContentSize(),
       x = b.railWidth(),
       top =
-        94 + (b.state.settings.bookmarksBar ? 28 : 0) + (b.findOpen ? 42 : 0);
+        94 + (b.state.settings.bookmarksBar ? 28 : 0) + (b.state.agentTask ? 34 : 0) + (b.findOpen ? 42 : 0);
     s.view.setBounds({
       x,
       y: top,
@@ -150,10 +151,11 @@ export async function editorOperation(
 ) {
   return invokeEditor(requireCurrent(b), operation, args);
 }
-async function pendingChanges(s: OpenProject) {
+async function pendingChanges(s: OpenProject, strict = false) {
   try {
     return (await invokeEditor(s, "inspect")).dirty as string[];
   } catch {
+    if(strict)throw Error('Workbench is still loading or unavailable. Wait for the editor before automation changes files.');
     return [];
   }
 }
@@ -208,6 +210,8 @@ async function stopTerminal(s: OpenProject) {
   const worker = s.terminal;
   s.terminal = undefined;
   terminalClients.clear();
+  terminalOwner = undefined;
+  s.terminalText='';
   if (worker) await killTree(s.shellPid);
   s.shellPid = undefined;
   if (worker) {
@@ -244,6 +248,7 @@ export async function closeWorkspace(b: Browser, force = false) {
       if (response !== 1) return false;
     }
     s.abort.abort(Error("Workspace closed."));
+    await require.cache[path.join(__dirname,'agent.cjs')]?.exports.revokeAgent({project:s.project.id});
     await stopTerminal(s);
     if (!s.view.webContents.isDestroyed()) {
       b.win.contentView.removeChildView(s.view);
@@ -509,6 +514,7 @@ export async function handleWorkspace(
     if (!(await allowReplace(s))) return { cancelled: true };
     s.trusted = !s.trusted;
     if (!s.trusted) {
+      await require.cache[path.join(__dirname,'agent.cjs')]?.exports.revokeAgent({project:s.project.id});
       s.abort.abort(Error("Workspace trust revoked."));
       s.abort = new AbortController();
       await stopTerminal(s);
@@ -533,7 +539,7 @@ export async function handleWorkspace(
         type: "warning",
         message: "Allow this MCP client to work in " + s.project.name + "?",
         detail:
-          "Separate workspace permission: read/edit ordinary project files and operate the editor and Git. Sensitive paths remain blocked. Terminal input always requires separate native approval. Browser control alone does not grant this permission. Revoke here or choose Take over at any time.",
+          "Separate workspace permission: read/edit ordinary project files, operate the editor and Git, open local previews and manage supported web extensions with installation approval. Sensitive paths remain blocked. Terminal input always requires separate native approval and runs with your Windows account privileges. Browser control alone does not grant this permission. Revoke here or choose Take over at any time.",
         buttons: ["Cancel", "Allow workspace"],
         defaultId: 0,
         cancelId: 0,
@@ -554,6 +560,7 @@ export async function handleWorkspace(
     await b.store.set("coding-grants", next);
     if (action !== "grant-client") {
       if (action === "takeover") {
+        await require.cache[path.join(__dirname,'agent.cjs')]?.exports.revokeAgent({project:s.project.id});
         if (terminalClients.size) await stopTerminal(s);
       } else if (value) revokeClient(value);
       for (const [client, controllers] of activeSignals)
@@ -574,6 +581,7 @@ export async function hasWorkspaceGrant(b: Browser, client?: string) {
   );
 }
 export function revokeClient(client: string) {
+  void require.cache[path.join(__dirname,'agent.cjs')]?.exports.revokeAgent({principal:client});
   for (const controller of activeSignals.get(client) || [])
     controller.abort(Error("Client permission revoked."));
   if (current && terminalClients.has(client)) {
@@ -776,8 +784,12 @@ async function git(
   throw Error("Unsupported Git operation.");
 }
 async function startTerminal(s: OpenProject, signal?: AbortSignal) {
+  const requestedOwner = clientScope.getStore();
   if (!s.trusted) throw Error("Trust the project before starting a terminal.");
-  if (s.terminal) return { running: true };
+    if (s.terminal) {
+      if (clientScope.getStore() && terminalOwner !== clientScope.getStore()) throw Error('This terminal belongs to the user or another client.');
+      return { running: true };
+    }
   if (s.startingTerminal) throw Error("A terminal start is already pending.");
   s.startingTerminal = true;
   try {
@@ -830,6 +842,7 @@ async function startTerminal(s: OpenProject, signal?: AbortSignal) {
     worker.on("message", (event: any) => {
       if (event.type === "started") s.shellPid = event.pid;
       if (event.type === "data") {
+        if(s.terminal!==worker)return;
         s.terminalText = (s.terminalText + event.text).slice(-40000);
         send(s, { type: "terminal-data", text: event.text });
       }
@@ -855,6 +868,8 @@ async function startTerminal(s: OpenProject, signal?: AbortSignal) {
       }),
     );
     await started;
+    if(signal?.aborted){await stopTerminal(s);throw Error('Terminal start canceled.');}
+    terminalOwner = requestedOwner;
     return { running: true };
   } finally {
     s.startingTerminal = false;
@@ -882,6 +897,7 @@ export async function requestWorkspace(
       layout: await b.store.get("coding-layout-" + s.project.id, null),
     };
   }
+  if(c.action==='agent'){b.newTab('piccolo://agents');return {opened:true};}
   if (["close", "reload", "trust", "manage"].includes(c.action))
     return handleWorkspace(b, c.action);
   if (c.action === "stat") return s.files.stat(c.path, automation);
@@ -893,7 +909,7 @@ export async function requestWorkspace(
     return r;
   }
   if (c.action === "write") {
-    if (automation && (await pendingChanges(s)).includes(c.path))
+    if (automation && (await pendingChanges(s,true)).includes(c.path))
       throw Error(
         "The file has unsaved editor changes. User takeover is required.",
       );
@@ -910,7 +926,7 @@ export async function requestWorkspace(
   if (
     automation &&
     (c.action === "rename" || c.action === "delete") &&
-    (await pendingChanges(s)).some(
+    (await pendingChanges(s,true)).some(
       (p) => p === c.path || p.startsWith(c.path + "/"),
     )
   )
@@ -929,6 +945,7 @@ export async function requestWorkspace(
     if (target === s.project.root)
       throw Error("Cannot delete the selected project root.");
     const { response } = await dialog.showMessageBox(b.win, {
+      signal,
       type: "warning",
       message: "Move " + c.path + " to the Recycle Bin?",
       buttons: ["Cancel", "Move to Recycle Bin"],
@@ -963,6 +980,7 @@ export async function requestWorkspace(
     return result;
   }
   if (c.action === "terminal-stop") {
+    if (automation && s.terminal && terminalOwner !== clientScope.getStore()) throw Error('This terminal belongs to the user or another client.');
     await stopTerminal(s);
     return { stopped: true };
   }
@@ -971,6 +989,8 @@ export async function requestWorkspace(
     return { ok: true };
   }
   if (c.action === "terminal-input") {
+    if (!automation && terminalOwner) throw Error('An MCP client owns this terminal. Choose Take over before entering commands.');
+    if (automation && terminalOwner !== clientScope.getStore()) throw Error('This terminal belongs to the user or another client.');
     if (!s.trusted || !s.terminal)
       throw Error("Start an explicitly approved terminal first.");
     if (automation) {
@@ -1071,6 +1091,7 @@ ipcMain.handle(
   },
 );
 export function terminalOutput(b: Browser) {
+  if ((current?.terminal||current?.terminalText) && clientScope.getStore() && terminalOwner !== clientScope.getStore()) throw Error('This terminal belongs to the user or another client.');
   return { text: requireCurrent(b).terminalText, running: !!current?.terminal };
 }
 export function ownsWorkspace(b: Browser) {
@@ -1081,8 +1102,10 @@ export function activity(b: Browser) {
   return events;
 }
 export async function safeEditorState(b: Browser) {
-  const s = requireCurrent(b),
-    state = await invokeEditor(s, "inspect");
+  const s = requireCurrent(b);
+  if(!(await s.view.webContents.executeJavaScript('Boolean(window.piccoloWorkbench?.ready)')))return {ready:false,dirty:[],documents:[],diagnostics:[],extensions:[]};
+  const state = await invokeEditor(s, "inspect");
+  state.ready=true;
   for (const key of ["dirty", "documents", "diagnostics"]) {
     const safe = [];
     for (const item of state[key]) {

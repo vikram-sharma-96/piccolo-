@@ -10,7 +10,7 @@ await mkdir(out, { recursive: true });
 const profile = path.join(out, `perf-profile-${Date.now()}`);
 const executable =
   process.env.PICCOLO_EXE ||
-  path.resolve("release/0.6.0/win-unpacked/Piccolo.exe");
+  path.resolve("release/0.7.0/win-unpacked/Piccolo.exe");
 const server = createServer((_req, res) => {
   res.setHeader("Content-Type", "text/html");
   res.end(

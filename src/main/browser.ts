@@ -676,6 +676,7 @@ export class Browser {
           ? 0
           : 94 +
             (this.state.settings.bookmarksBar ? 28 : 0) +
+            (this.state.agentTask ? 34 : 0) +
             (this.findOpen ? 42 : 0);
         v.setBounds({
           x: this.htmlFullscreen ? 0 : this.railWidth(),
@@ -907,6 +908,7 @@ export class Browser {
     const tab = this.active(),
       wc = this.activeContents();
     switch (c.type) {
+      case 'agent': return require(path.join(__dirname,'agent.cjs')).handleAgent(this,c.action,c.value);
       case 'workspace':
         return require(path.join(__dirname,'coding.cjs')).handleWorkspace(this,c.action,c.value);
       case "sidebar":

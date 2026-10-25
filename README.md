@@ -1,4 +1,16 @@
-# Piccolo 0.6
+# Piccolo 0.7
+
+Version 0.7 connects Browser, Code and Agent with real AdaL text/image decisions, explicitly attached context, native action approvals, a visible execution timeline and encrypted source-linked artifacts. Read [Agent setup, verification commands and limitations](AGENT_USAGE.md). AdaL is separately installed and authenticated; ordinary browsing does not start a model process. The single-task coordinator uses Piccolo's authenticated local MCP server and never automatically commits, pushes, deploys or installs dependencies.
+
+See the [agent and regression audit](AGENT_AUDIT.md), [architecture](AGENT_ARCHITECTURE.md), [actual AdaL usage](ADAL_USAGE.md) and [performance observations](PERFORMANCE.md) for evidence and scope.
+
+[0.7 delivery, package checksums and remaining limitations](RELEASE_0_7.md).
+
+Current source also adds [verified task CSV spreadsheets](SPREADSHEET_CAPABILITY.md) through `write_sheet` / `verify_sheet`; the previously built 0.7 installer does not contain this later change.
+
+The [GTM workflow](GTM_WORKFLOW.md) adds attached-page competitor excerpts, approved Markdown drafts, an actual AdaL-generated banner and disk/source/image verification. It drafts only; it does not send or publish.
+
+[Outcome evidence verification](EVIDENCE_VERIFICATION.md) now checks numeric/price support against observed sources, records matching snippets and locks numeric expectations across verification retries.
 
 A personal Windows browser using React, Electron 45 and strict TypeScript. Websites run in sandboxed WebContentsViews without Node or a privileged preload. Browsing records remain local in SQLite.
 
@@ -35,16 +47,16 @@ node scripts/coding-ui-smoke.mjs # visible Explorer and editor keyboard workflow
 npm run installer        # NSIS installer + unpacked Windows application
 ```
 
-Build locations: `release/0.6.0/Piccolo Setup 0.6.0.exe` and `release/0.6.0/win-unpacked/Piccolo.exe`. Keep the whole unpacked folder together. Builds are unsigned; OS installation is not part of the automated tests. Previous release folders, including 0.4 and the historical 0.5 build, are preserved.
+Build locations: `release/0.7.0/Piccolo Setup 0.7.0.exe` and `release/0.7.0/win-unpacked/Piccolo.exe`. Keep the whole unpacked folder together. Builds are unsigned; OS installation is not part of the automated tests. Previous release folders, including 0.4 and the historical 0.5 build, are preserved.
 
 ```powershell
-$env:PICCOLO_EXE = (Resolve-Path 'release/0.6.0/win-unpacked/Piccolo.exe').Path
+$env:PICCOLO_EXE = (Resolve-Path 'release/0.7.0/win-unpacked/Piccolo.exe').Path
 npm run mcp-smoke
 npm run smoke
 npm run upgrade-smoke
 npm run download-policy
 npm run appearance-audit
-$env:PERF_REPORT = "after-0.6.0.json"
+$env:PERF_REPORT = "after-0.7.0.json"
 npm run measure
 node scripts/report-maintenance.mjs
 node scripts/check-release.mjs

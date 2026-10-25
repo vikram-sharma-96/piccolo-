@@ -1,5 +1,11 @@
 # Architecture
 
+## Agent integration (0.7)
+
+Current source includes shared strict sheet schemas/CSV parsing, `TaskSheets` for owned task files, registry entries `write_sheet`/`verify_sheet`, and a finish-time disk verification gate. CSV snapshots are encrypted with the other artifacts; the actual CSV is a plaintext task file. Retention and deletion prune only owned UUID filenames. Source navigation failures are represented as unavailable observations. Provider prompts bound individual records instead of cutting serialized JSON.
+
+The Browser/Code/Agent UI shares existing semantic theme tokens and a compact task bar above native browsing surfaces. A lazy `agent.cjs` owns one task per normal profile/window. Its typed registry routes actual capabilities through a dedicated authenticated `piccolo-agent` MCP client; Code remains a separate on-demand workbench. `agent-engine.ts` coordinates decisions, observable checks, budgets, state transitions and cancellation. `agent-adal.ts` implements the inspected AdaL SDK protocol without exposing privileged local tools. `agent-storage.ts` separates OS-encrypted artifacts from atomic task metadata. See [architecture and trust boundaries](AGENT_ARCHITECTURE.md) and [operation guide](AGENT_USAGE.md).
+
 ## 0.4 download and appearance changes
 
 `src/main/downloads.ts` now owns the transfer map, staging, approval queue, bounded flood accounting and terminal-state guards for every browsing session. `Browser.configureSession` routes owned downloads to it; React only submits validated commands. Approval never depends on a remote renderer or HTTPS trust. Startup cleanup and shutdown are coordinated in `main.ts`. The detailed state/transfer limits and filesystem/network limitations are in DOWNLOAD_PROTECTION.md.

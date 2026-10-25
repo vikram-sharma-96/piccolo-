@@ -195,6 +195,8 @@ app.on("before-quit", (event) => {
   event.preventDefault();
   exiting = true;
   void (async () => {
+    const agentFile=path.join(__dirname,'agent.cjs');
+    if(require.cache[agentFile])await require(agentFile).shutdownAgents();
     const codingFile=path.join(__dirname,'coding.cjs');
     if(require.cache[codingFile]&&!(await require(codingFile).shutdown())){exiting=false;return;}
     await shutdownDownloads();

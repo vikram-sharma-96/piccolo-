@@ -1,0 +1,31 @@
+{
+  "verified": true,
+  "checks": [
+    {
+      "role": "positioning-brief",
+      "verified": true,
+      "sourceCheck": {
+        "verified": true,
+        "claims": 9,
+        "missingSources": [],
+        "unknown": 4
+      }
+    },
+    {
+      "role": "launch-post",
+      "verified": true
+    },
+    {
+      "role": "email-draft",
+      "verified": true
+    },
+    {
+      "role": "launch-banner",
+      "verified": true,
+      "width": 1088,
+      "height": 608
+    }
+  ],
+  "draftedOnly": true,
+  "networkSendOrPublish": false
+}

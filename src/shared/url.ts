@@ -1,7 +1,7 @@
 import { searchURL, defaultEngines } from "./search";
 import type { Settings } from "./model";
 export function internal(url: string) {
-  return /^piccolo:\/\/(newtab|history|bookmarks|downloads|settings|performance|workspaces|extensions|connections|passwords|integrations|privacy|about)\/?$/.test(
+  return /^piccolo:\/\/(newtab|history|bookmarks|downloads|settings|performance|workspaces|agents|extensions|connections|passwords|integrations|privacy|about)\/?$/.test(
     url,
   );
 }

@@ -548,6 +548,7 @@ for (const [id, fn] of Object.entries({
   terminal: showTerminal,
   preview,
   palette: () => commands.executeCommand("workbench.action.showCommands"),
+  agent:()=>request({action:'agent'}),
   close: () => request({ action: "close" } as any),
 }))
   $(id).onclick = () => void Promise.resolve(fn()).catch(failure);
@@ -576,7 +577,7 @@ bridge.subscribe(async (event: any) => {
     );
 });
 (window as any).piccoloWorkbench = {
-  ready: true,
+  ready: false,
   inspect: () => ({
     dirty: workingCopies.dirtyWorkingCopies
       .filter(
@@ -714,6 +715,7 @@ if (state.layout?.groups) {
       await open(state.layout.active);
     } catch {}
 }
+(window as any).piccoloWorkbench.ready=true;
 addEventListener("unload", () => {
   resize?.disconnect();
   terminal?.dispose();

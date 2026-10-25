@@ -1,0 +1,97 @@
+{
+  "date": "2026-10-25T13:22:45.342Z",
+  "profile": "C:\\Github Projects\\Piccolo\\test-results\\sheet-live-1792934515731",
+  "taskId": "27ab6132-08f8-4061-bbff-071fd6a7f892",
+  "status": "completed",
+  "calls": 7,
+  "results": [
+    {
+      "name": "Real AdaL researches three actual pages plus failed URL, writes CSV, verifies all 25 cells and displays source-linked artifact",
+      "status": "Passed"
+    }
+  ],
+  "steps": [
+    {
+      "capability": "browser.observe",
+      "status": "succeeded",
+      "verified": false
+    },
+    {
+      "capability": "browser.observe",
+      "status": "succeeded",
+      "verified": false
+    },
+    {
+      "capability": "browser.observe",
+      "status": "succeeded",
+      "verified": false
+    },
+    {
+      "capability": "browser.observe",
+      "status": "succeeded",
+      "verified": false
+    },
+    {
+      "capability": "write_sheet",
+      "status": "succeeded",
+      "verified": false
+    },
+    {
+      "capability": "verify_sheet",
+      "status": "succeeded",
+      "verified": true
+    }
+  ],
+  "sources": [
+    {
+      "kind": "tab",
+      "id": "767f98db-643b-44d0-bdd9-f44572f2e5dd",
+      "title": "ElevenLabs Pricing for Creators & Businesses of All Sizes",
+      "url": "https://elevenlabs.io/pricing"
+    },
+    {
+      "kind": "tab",
+      "id": "3544ac2a-94b2-4ddb-9048-84543660a397",
+      "title": "Pricing | Otter.ai",
+      "url": "https://otter.ai/pricing"
+    },
+    {
+      "kind": "tab",
+      "id": "721c1068-5536-4198-92f2-243b51757e30",
+      "title": "Pricing & Plans | Fireflies.ai AI App for Smarter Meeting Notes",
+      "url": "https://fireflies.ai/pricing"
+    },
+    {
+      "kind": "tab",
+      "id": "acc9559f-4fff-4b98-8464-ac1c73a5279e",
+      "title": "piccolo-unreachable.invalid/pricing",
+      "url": "https://piccolo-unreachable.invalid/pricing"
+    }
+  ],
+  "unknownEvents": [
+    {
+      "time": 1792934548914,
+      "kind": "action",
+      "detail": "Observe the unreachable URL tab",
+      "stepId": "2b624876-cc54-4c5b-9110-fa9f0348ee0b"
+    },
+    {
+      "time": 1792934548923,
+      "kind": "observation",
+      "detail": "Source unreachable; product and pricing are unknown: https://piccolo-unreachable.invalid/pricing"
+    },
+    {
+      "time": 1792934554706,
+      "kind": "observation",
+      "detail": "unknown: unreachable (missing values written as unknown)"
+    }
+  ],
+  "verification": {
+    "verified": true,
+    "matched": 25,
+    "mismatched": 0,
+    "missing": 0
+  },
+  "sourceSpotChecks": "ElevenLabs Pro $99 per month; Otter Basic Free (no forever guarantee); Fireflies Pro $10 per seat/month billed annually. These strings/billing qualifiers were independently checked against the actual page observations. Other billing modes were not inferred.",
+  "limitations": "CSV verification establishes agreement with extracted data, not general factual correctness. Real native prompts were approved by the isolated test harness. Existing packaged 0.7 installer is unchanged."
+}

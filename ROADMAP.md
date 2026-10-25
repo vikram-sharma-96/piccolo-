@@ -1,5 +1,9 @@
 # Roadmap after prompt1
 
+## Agent workspace priorities after 0.7
+
+The new bounded AdaL coordinator supports real text/image tasks and a reviewed browser/code/preview workflow. Remaining work includes additional provider adapters, provider-reported monetary limits, native streaming, selected prior-artifact attachments, broader autonomous tab/window/dialog/download operations, long-running soak and abrupt-OS-crash process cleanup tests. Audio/video and parallel/delegated agents are unavailable. Preserve explicit scope, native approvals and lightweight idle browsing before widening these capabilities. Direct MCP browser tools and Code web-extension support retain their existing independent boundaries.
+
 ## Implemented in 0.4
 
 Main-process download approval and flood bounds, explicit multiple-download permission, risky-name caution, correct cancellation/terminal history, separate Active/History lists and record clearing. Light/Dark/System semantic palettes, first-paint initialization, OS-following System mode and separate website color preferences. Lightweight chrome motion, reduced-motion/low-power suppression, keyboard tab reordering and Downloads access. Scoped MCP section/menu/control inventory and three-mode application audit, plus extension/catalog compatibility and Reddit research documents.

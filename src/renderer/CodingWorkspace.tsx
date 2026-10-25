@@ -35,6 +35,7 @@ export default function CodingWorkspace({
         <div>
           <h1>Code, beside your browser.</h1>
           <p>Open a local project in Piccolo’s Code OSS workbench.</p>
+          <button onClick={()=>void act({type:'new-tab',url:'piccolo://agents'})}>Open Agent workspace</button>
         </div>
         <button
           className="primary"

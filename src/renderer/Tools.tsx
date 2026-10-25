@@ -10,6 +10,7 @@ import { SearchSettings } from "./SearchSettings";
 import { liveDownload } from "../shared/download-policy";
 const OptionalPages = lazy(() => import("./OptionalPages"));
 const CodingWorkspace = lazy(() => import("./CodingWorkspace"));
+const AgentWorkspace = lazy(()=>import('./AgentWorkspace'));
 import { Icon } from "./icons";
 type Props = {
   page: string;
@@ -96,6 +97,7 @@ export default function Tools({ page, state, act, navigate }: Props) {
         <CodingWorkspace state={state} act={act} />
       </Suspense>
     );
+  if(page==='agents')return <Suspense fallback={<div className="page">Opening agent workspace…</div>}><AgentWorkspace state={state} act={act} navigate={navigate}/></Suspense>;
   const heading: Record<string, [string, string]> = {
     history: ["Your trail", "Places you have been. Ready to revisit."],
     bookmarks: [

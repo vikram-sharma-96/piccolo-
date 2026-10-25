@@ -1,0 +1,118 @@
+{
+  "verified": true,
+  "records": [
+    {
+      "location": "expected",
+      "value": "$99",
+      "key": "$|99||",
+      "status": "supported",
+      "sourceId": "12e460c5-e048-460a-804a-3fe14831e230",
+      "sourceUrl": "https://elevenlabs.io/pricing",
+      "evidenceKind": "page",
+      "snippet": "g Additional Credits 121k credits per month Pro $99 per month Choose Pro Everything in Creator, plus"
+    },
+    {
+      "location": "text",
+      "value": "$99",
+      "key": "$|99||",
+      "status": "supported",
+      "sourceId": "12e460c5-e048-460a-804a-3fe14831e230",
+      "sourceUrl": "https://elevenlabs.io/pricing",
+      "evidenceKind": "page",
+      "snippet": "g Additional Credits 121k credits per month Pro $99 per month Choose Pro Everything in Creator, plus"
+    }
+  ],
+  "verificationSteps": [
+    {
+      "id": "9bf08418-a3a5-4ec8-afe7-e77996109910",
+      "objective": "Independently verify on the live page that the Pro plan shows $99 per month",
+      "capability": "verify.page",
+      "status": "succeeded",
+      "started": 1792939726257,
+      "inputSummary": "{\"tabId\":\"12e460c5-e048-460a-804a-3fe14831e230\",\"expected\":\"Pro $99 per month\"}",
+      "permission": "tabs",
+      "target": "tab:12e460c5-e048-460a-804a-3fe14831e230",
+      "grantId": "eeb2c8df-a907-4a2f-ae62-dba00524d686",
+      "verified": true,
+      "result": {
+        "verified": true,
+        "url": "https://elevenlabs.io/pricing",
+        "expected": "Pro $99 per month",
+        "expectedValues": {
+          "target": "12e460c5-e048-460a-804a-3fe14831e230",
+          "immutable": true,
+          "values": [
+            {
+              "key": "$|99||",
+              "raw": "$99"
+            }
+          ]
+        },
+        "numericEvidence": {
+          "checked": 1,
+          "supported": 1,
+          "unsupported": 0,
+          "missing": 0,
+          "unknown": 0,
+          "acceptable": true,
+          "fullySupported": true,
+          "records": [
+            {
+              "location": "expected",
+              "value": "$99",
+              "key": "$|99||",
+              "status": "supported",
+              "sourceId": "12e460c5-e048-460a-804a-3fe14831e230",
+              "sourceUrl": "https://elevenlabs.io/pricing",
+              "evidenceKind": "page",
+              "snippet": "g Additional Credits 121k credits per month Pro $99 per month Choose Pro Everything in Creator, plus"
+            }
+          ],
+          "recordsTruncated": false,
+          "limits": "Only numbers/prices/currency amounts are checked against observed page text for the attached source. Non-numeric claims are not semantically proven; a matching number may belong to a different fact."
+        }
+      },
+      "ended": 1792939726295
+    },
+    {
+      "id": "48d66302-a858-40a8-9d82-d2e583727d0f",
+      "objective": "Verify the stored note artifact provenance and source references",
+      "capability": "verify.artifact",
+      "status": "succeeded",
+      "started": 1792939728788,
+      "inputSummary": "{\"artifactId\":\"0970c7f6-3856-4841-8692-48378a139483\"}",
+      "permission": "artifacts",
+      "grantId": "9cf46deb-08b3-4864-9130-208dea7b9960",
+      "verified": true,
+      "result": {
+        "verified": true,
+        "artifactId": "0970c7f6-3856-4841-8692-48378a139483",
+        "numericEvidence": {
+          "checked": 1,
+          "supported": 1,
+          "unsupported": 0,
+          "missing": 0,
+          "unknown": 0,
+          "acceptable": true,
+          "fullySupported": true,
+          "records": [
+            {
+              "location": "text",
+              "value": "$99",
+              "key": "$|99||",
+              "status": "supported",
+              "sourceId": "12e460c5-e048-460a-804a-3fe14831e230",
+              "sourceUrl": "https://elevenlabs.io/pricing",
+              "evidenceKind": "page",
+              "snippet": "g Additional Credits 121k credits per month Pro $99 per month Choose Pro Everything in Creator, plus"
+            }
+          ],
+          "recordsTruncated": false,
+          "limits": "Only numbers/prices/currency amounts are checked against observed page text for the attached source. Non-numeric claims are not semantically proven; a matching number may belong to a different fact."
+        },
+        "scope": "Artifact storage hash and attached source provenance, plus numeric/currency values matched against observed attached-source text (non-numeric claims are NOT proven); findings require user review."
+      },
+      "ended": 1792939728836
+    }
+  ]
+}

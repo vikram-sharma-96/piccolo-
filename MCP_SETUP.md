@@ -1,4 +1,4 @@
-# Piccolo MCP setup (Windows 0.6.0)
+# Piccolo MCP setup (Windows 0.7.0)
 
 Coding tools require an additional project-specific grant and runtime project trust. Browser control never grants filesystem or terminal access. Open Workspaces → Project controls to grant/revoke a paired client; Take over cancels automation and stops its terminal. Every MCP terminal input needs separate native approval. See [coding workspace setup](CODING_WORKSPACE.md).
 
@@ -12,8 +12,8 @@ Merge this into `C:\Users\Vikram Sharma\.codex\config.toml` (preserve existing s
 
 ```toml
 [mcp_servers.piccolo]
-command = 'C:\Github Projects\Piccolo\release\0.6.0\win-unpacked\Piccolo.exe'
-args = ['C:\Github Projects\Piccolo\release\0.6.0\win-unpacked\resources\app.asar\dist\mcp-stdio-entry.cjs', '--client=codex']
+command = 'C:\Github Projects\Piccolo\release\0.7.0\win-unpacked\Piccolo.exe'
+args = ['C:\Github Projects\Piccolo\release\0.7.0\win-unpacked\resources\app.asar\dist\mcp-stdio-entry.cjs', '--client=codex']
 startup_timeout_sec = 120
 
 [mcp_servers.piccolo.env]
@@ -30,9 +30,9 @@ Use **MCP Servers → Manage MCP Servers → View raw config** and merge the `pi
 {
   "mcpServers": {
     "piccolo": {
-      "command": "C:\\Github Projects\\Piccolo\\release\\0.6.0\\win-unpacked\\Piccolo.exe",
+      "command": "C:\\Github Projects\\Piccolo\\release\\0.7.0\\win-unpacked\\Piccolo.exe",
       "args": [
-        "C:\\Github Projects\\Piccolo\\release\\0.6.0\\win-unpacked\\resources\\app.asar\\dist\\mcp-stdio-entry.cjs",
+        "C:\\Github Projects\\Piccolo\\release\\0.7.0\\win-unpacked\\resources\\app.asar\\dist\\mcp-stdio-entry.cjs",
         "--client=antigravity"
       ],
       "env": {
@@ -96,7 +96,7 @@ npm run build
 npm test
 npm run mcp-smoke
 npm run installer
-$env:PICCOLO_EXE = 'C:\Github Projects\Piccolo\release\0.6.0\win-unpacked\Piccolo.exe'
+$env:PICCOLO_EXE = 'C:\Github Projects\Piccolo\release\0.7.0\win-unpacked\Piccolo.exe'
 npm run mcp-smoke
 npm run smoke
 npm run upgrade-smoke

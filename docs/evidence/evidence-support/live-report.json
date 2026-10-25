@@ -1,0 +1,87 @@
+{
+  "date": "2026-10-25T15:00:14.233Z",
+  "profile": "C:\\Github Projects\\Piccolo\\test-results\\evidence-support-live-1792939696669",
+  "status": "completed",
+  "modelDecisions": 5,
+  "source": [
+    {
+      "kind": "tab",
+      "id": "12e460c5-e048-460a-804a-3fe14831e230",
+      "title": "ElevenLabs Pricing for Creators & Businesses of All Sizes",
+      "url": "https://elevenlabs.io/pricing"
+    }
+  ],
+  "steps": [
+    {
+      "capability": "browser.observe",
+      "status": "succeeded",
+      "verified": false
+    },
+    {
+      "capability": "artifact.note",
+      "status": "succeeded",
+      "verified": false
+    },
+    {
+      "capability": "verify.page",
+      "status": "succeeded",
+      "verified": true
+    },
+    {
+      "capability": "verify.artifact",
+      "status": "succeeded",
+      "verified": true
+    }
+  ],
+  "records": [
+    {
+      "location": "expected",
+      "value": "$99",
+      "key": "$|99||",
+      "status": "supported",
+      "sourceId": "12e460c5-e048-460a-804a-3fe14831e230",
+      "sourceUrl": "https://elevenlabs.io/pricing",
+      "evidenceKind": "page",
+      "snippet": "g Additional Credits 121k credits per month Pro $99 per month Choose Pro Everything in Creator, plus"
+    },
+    {
+      "location": "text",
+      "value": "$99",
+      "key": "$|99||",
+      "status": "supported",
+      "sourceId": "12e460c5-e048-460a-804a-3fe14831e230",
+      "sourceUrl": "https://elevenlabs.io/pricing",
+      "evidenceKind": "page",
+      "snippet": "g Additional Credits 121k credits per month Pro $99 per month Choose Pro Everything in Creator, plus"
+    }
+  ],
+  "artifactEvidence": [
+    {
+      "id": "0970c7f6-3856-4841-8692-48378a139483",
+      "title": "Observed Pro pricing",
+      "evidence": {
+        "records": [
+          {
+            "location": "text",
+            "value": "$99",
+            "key": "$|99||",
+            "status": "supported",
+            "sourceId": "12e460c5-e048-460a-804a-3fe14831e230",
+            "sourceUrl": "https://elevenlabs.io/pricing",
+            "evidenceKind": "page",
+            "snippet": "g Additional Credits 121k credits per month Pro $99 per month Choose Pro Everything in Creator, plus"
+          }
+        ],
+        "checkedAt": 1792939734310,
+        "limits": "Only numbers/prices/currency amounts are checked against observed page text for the attached source. Non-numeric claims are not semantically proven; a matching number may belong to a different fact."
+      }
+    }
+  ],
+  "results": [
+    {
+      "name": "Real in-app AdaL observes a real price, writes note, and returns numeric evidence snippets in verification",
+      "status": "Passed"
+    }
+  ],
+  "approvalHandling": "Native consent functions were programmatically approved only in the isolated test profile. Actual AdaL/model, MCP browser observations and verification logic were used."
+}

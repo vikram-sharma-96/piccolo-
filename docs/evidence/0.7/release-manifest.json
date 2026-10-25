@@ -1,0 +1,35 @@
+{
+  "date": "2026-10-25T08:58:51.307Z",
+  "matchedBundles": [
+    "main",
+    "preload",
+    "database-worker",
+    "optional",
+    "mcp",
+    "mcp-stdio-entry",
+    "coding",
+    "coding-preload",
+    "coding-terminal",
+    "agent"
+  ],
+  "matchedAssets": 132,
+  "nativePtyPresent": true,
+  "antigravityJsonParsed": true,
+  "files": [
+    {
+      "file": "C:\\Github Projects\\Piccolo\\release\\0.7.0\\Piccolo Setup 0.7.0.exe",
+      "bytes": 131427326,
+      "sha256": "db201e8531eb8c4fe7e1de7bfb161ca649144d08d5f878aade17f162d2518cda"
+    },
+    {
+      "file": "C:\\Github Projects\\Piccolo\\release\\0.7.0\\win-unpacked\\Piccolo.exe",
+      "bytes": 250045952,
+      "sha256": "4f798c7c91f076dd7f00cd0fda73028691048c4d6288e3dd9248cd2fe97a4ee8"
+    },
+    {
+      "file": "C:\\Github Projects\\Piccolo\\release\\0.7.0\\win-unpacked\\resources\\app.asar",
+      "bytes": 64455255,
+      "sha256": "064ac40cc31a08058fb26170f2909603494e6e44579eb9479f392ada9954e946"
+    }
+  ]
+}

@@ -1,0 +1,205 @@
+{
+  "date": "2026-10-25T13:55:53.768Z",
+  "status": "completed",
+  "provider": "Existing Piccolo AdalProvider via real AdaL SDK",
+  "modelDecisions": 7,
+  "attachedUrls": [
+    "https://www.perplexity.ai/comet",
+    "https://www.opera.com/neon",
+    "https://www.diabrowser.com"
+  ],
+  "actualSources": [
+    {
+      "kind": "tab",
+      "id": "51c7b8d4-55a5-49da-b4f4-23455a1bc183",
+      "title": "Comet Browser: a Personal AI Assistant",
+      "url": "https://www.perplexity.ai/comet"
+    },
+    {
+      "kind": "tab",
+      "id": "73cc6cd1-5108-4c11-8a4d-dc2bc0b63373",
+      "title": "Opera Neon. This browser is built to act. | Opera Neon",
+      "url": "https://www.operaneon.com/"
+    },
+    {
+      "kind": "tab",
+      "id": "7ef9c2c4-8fc5-4fdf-9634-c9aa681086b0",
+      "title": "Dia | The browser for better days at work.",
+      "url": "https://www.diabrowser.com/"
+    }
+  ],
+  "artifactDirectory": "C:\\Github Projects\\Piccolo\\test-results\\gtm-live-1792936046131\\agent\\tasks\\ceb95b7d-547a-44c9-8305-2b32bc9bfd32",
+  "artifacts": [
+    {
+      "role": "launch-banner",
+      "fileName": "c7c1ccd5-5216-4d98-abc1-cf906d360539.png",
+      "title": "launch-banner.png",
+      "sha256": "a3805844a97ef205304b45593ddfcd3ce80fe035ba096755db25feeb9a98c12a",
+      "verified": true,
+      "generation": {
+        "provider": "AdaL generate_image",
+        "model": "gpt-image-2.5-flare"
+      }
+    },
+    {
+      "role": "positioning-brief",
+      "fileName": "e4222bd5-c56e-44f2-8ea3-083293823eac.md",
+      "title": "positioning-brief.md",
+      "sha256": "1333071c4af2c0666af90d1be8647f10b1aed586af1486c080e2ebf2ac0f72bd",
+      "verified": true
+    },
+    {
+      "role": "launch-post",
+      "fileName": "cbf56af3-ff0d-4be7-8492-3f7f2e58a222.md",
+      "title": "launch-post.md",
+      "sha256": "df8b54051f26b38eb5b1d991128c074dc4676c9b14179653645eb18cb9a15bc1",
+      "verified": true
+    },
+    {
+      "role": "email-draft",
+      "fileName": "5b14f643-3c25-4a44-8737-2367cf75805f.md",
+      "title": "email-draft.md",
+      "sha256": "df2cd3e07f063245708dfa0264222104047f4419da95bad11854e68543a2bf5d",
+      "verified": true
+    }
+  ],
+  "steps": [
+    {
+      "capability": "generate_launch_banner",
+      "status": "succeeded",
+      "verified": false
+    },
+    {
+      "capability": "browser.observe",
+      "status": "succeeded",
+      "verified": false
+    },
+    {
+      "capability": "browser.observe",
+      "status": "succeeded",
+      "verified": false
+    },
+    {
+      "capability": "browser.observe",
+      "status": "succeeded",
+      "verified": false
+    },
+    {
+      "capability": "write_gtm",
+      "status": "succeeded",
+      "verified": false
+    },
+    {
+      "capability": "verify_gtm",
+      "status": "succeeded",
+      "verified": true
+    }
+  ],
+  "nativeApprovalCalls": [
+    {
+      "message": "Enable Piccolo MCP server?",
+      "buttons": [
+        "Cancel",
+        "Enable"
+      ]
+    },
+    {
+      "message": "Pair local MCP client “piccolo-agent”?",
+      "buttons": [
+        "Deny",
+        "Pair with per-call approval",
+        "Trust browser control"
+      ]
+    },
+    {
+      "message": "Allow selected task data to be sent to AdaL?",
+      "buttons": [
+        "Cancel",
+        "Allow"
+      ]
+    },
+    {
+      "message": "Generate one launch banner image with AdaL?",
+      "buttons": [
+        "Cancel",
+        "Allow"
+      ]
+    },
+    {
+      "message": "Allow this changed tab origin to send content to AdaL?",
+      "buttons": [
+        "Cancel",
+        "Allow"
+      ]
+    },
+    {
+      "message": "Write GTM draft files? Nothing will be published or sent.",
+      "buttons": [
+        "Cancel",
+        "Allow"
+      ]
+    }
+  ],
+  "approvalHandling": "Native dialog functions were programmatically approved by the isolated live test harness; production approval remains required.",
+  "capabilities": [
+    "write_gtm",
+    "generate_launch_banner",
+    "verify_gtm",
+    "browser.observe"
+  ],
+  "unknownEvents": [
+    {
+      "time": 1792936138457,
+      "kind": "observation",
+      "detail": "Pricing is unknown: https://www.perplexity.ai/comet"
+    },
+    {
+      "time": 1792936138457,
+      "kind": "observation",
+      "detail": "Target audience is unknown: https://www.perplexity.ai/comet"
+    },
+    {
+      "time": 1792936138457,
+      "kind": "observation",
+      "detail": "Target audience is unknown: https://www.operaneon.com/"
+    },
+    {
+      "time": 1792936138457,
+      "kind": "observation",
+      "detail": "Target audience is unknown: https://www.diabrowser.com/"
+    }
+  ],
+  "draftedOnly": true,
+  "sentOrPublished": false,
+  "verification": {
+    "verified": true,
+    "checks": [
+      {
+        "role": "positioning-brief",
+        "verified": true,
+        "sourceCheck": {
+          "verified": true,
+          "claims": 9,
+          "missingSources": [],
+          "unknown": 4
+        }
+      },
+      {
+        "role": "launch-post",
+        "verified": true
+      },
+      {
+        "role": "email-draft",
+        "verified": true
+      },
+      {
+        "role": "launch-banner",
+        "verified": true,
+        "width": 1088,
+        "height": 608
+      }
+    ],
+    "draftedOnly": true,
+    "networkSendOrPublish": false
+  }
+}

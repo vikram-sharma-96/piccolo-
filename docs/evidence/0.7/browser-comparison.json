@@ -1,0 +1,122 @@
+[
+  {
+    "version": "0.6.0",
+    "startupMs": 957.8481999999999,
+    "cpu": "AMD Ryzen 7 6800H with Radeon Graphics         ",
+    "logicalCPUs": 16,
+    "ram": 7722795008,
+    "method": "Playwright Electron, fresh profile, first content visible; reduced-motion emulated off consistently for opt-in video; 2 second settle then 3 samples 1 second apart; process working sets summed (may double count shared pages). Debugging overhead is present. Warm file cache; not a machine cold boot.",
+    "records": [
+      {
+        "name": "new-tab idle, gradient",
+        "workingSetMiB": 410.88,
+        "electronCpuPercent": 0.045492478541825844
+      },
+      {
+        "name": "one active static local page",
+        "workingSetMiB": 513.38,
+        "electronCpuPercent": 0.09530276981296996
+      },
+      {
+        "name": "five loaded static local pages",
+        "workingSetMiB": 908.11,
+        "electronCpuPercent": 0.07208353334128897
+      },
+      {
+        "name": "after closing four tabs",
+        "workingSetMiB": 522.48,
+        "electronCpuPercent": 0.025632270076180606
+      },
+      {
+        "name": "after ten open/close cycles",
+        "workingSetMiB": 522.15,
+        "electronCpuPercent": 0.35855705742266836
+      },
+      {
+        "name": "video wallpaper enabled (320x180 VP8, muted)",
+        "workingSetMiB": 497.97,
+        "electronCpuPercent": 0.5069613013211551
+      },
+      {
+        "name": "video wallpaper hidden by webpage",
+        "workingSetMiB": 602.14,
+        "electronCpuPercent": 0.1970453598964305
+      },
+      {
+        "name": "video wallpaper minimized",
+        "workingSetMiB": 498.65,
+        "electronCpuPercent": 0.05941163189731435
+      },
+      {
+        "name": "video wallpaper window hidden",
+        "workingSetMiB": 490.41,
+        "electronCpuPercent": 0.019565236753247936
+      },
+      {
+        "name": "video wallpaper disabled by low-power mode",
+        "workingSetMiB": 501.54,
+        "electronCpuPercent": 0.036204963644112464
+      }
+    ]
+  },
+  {
+    "version": "0.7.0",
+    "startupMs": 1248.779,
+    "cpu": "AMD Ryzen 7 6800H with Radeon Graphics         ",
+    "logicalCPUs": 16,
+    "ram": 7722795008,
+    "method": "Playwright Electron, fresh profile, first content visible; reduced-motion emulated off consistently for opt-in video; 2 second settle then 3 samples 1 second apart; process working sets summed (may double count shared pages). Debugging overhead is present. Warm file cache; not a machine cold boot.",
+    "records": [
+      {
+        "name": "new-tab idle, gradient",
+        "workingSetMiB": 418.42,
+        "electronCpuPercent": 0.05075295319996013
+      },
+      {
+        "name": "one active static local page",
+        "workingSetMiB": 515.46,
+        "electronCpuPercent": 0.11929293683128084
+      },
+      {
+        "name": "five loaded static local pages",
+        "workingSetMiB": 905.01,
+        "electronCpuPercent": 0.08051858722277411
+      },
+      {
+        "name": "after closing four tabs",
+        "workingSetMiB": 518.98,
+        "electronCpuPercent": 0.06442751598137857
+      },
+      {
+        "name": "after ten open/close cycles",
+        "workingSetMiB": 527.86,
+        "electronCpuPercent": 0.827687945561146
+      },
+      {
+        "name": "video wallpaper enabled (320x180 VP8, muted)",
+        "workingSetMiB": 633.2,
+        "electronCpuPercent": 1.331991754056116
+      },
+      {
+        "name": "video wallpaper hidden by webpage",
+        "workingSetMiB": 759.17,
+        "electronCpuPercent": 1.1599932513275475
+      },
+      {
+        "name": "video wallpaper minimized",
+        "workingSetMiB": 645.42,
+        "electronCpuPercent": 0.03026781211778797
+      },
+      {
+        "name": "video wallpaper window hidden",
+        "workingSetMiB": 617.33,
+        "electronCpuPercent": 0.03789305672599699
+      },
+      {
+        "name": "video wallpaper disabled by low-power mode",
+        "workingSetMiB": 644.94,
+        "electronCpuPercent": 0.04021494676049735
+      }
+    ]
+  }
+]

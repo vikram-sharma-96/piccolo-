@@ -216,6 +216,8 @@ export const sessionSchema = z
   )
   .max(1200);
 export interface State {
+  agentRevision?: number;
+  agentTask?: {id:string;status:string;step:number};
   workspaceRevision?: number;
   appearance: "light" | "dark";
   tabs: Tab[];
@@ -233,6 +235,7 @@ export interface State {
 }
 const id = z.string().min(1).max(100);
 export const commandSchema = z.discriminatedUnion("type", [
+  z.object({type:z.literal('agent'),action:z.enum(['status','connect','disconnect','start','pause','resume','cancel','takeover','attach-image','artifact','delete','hide','show','export-summary']),value:z.unknown().optional()}),
   z.object({type:z.literal('workspace'),action:z.enum(['status','pick','reopen','close','trust','reload','manage','show','grant-client','revoke-client','takeover']),value:z.string().max(64).optional()}),
   z.object({ type: z.literal("navigate"), input: text }),
   z.object({

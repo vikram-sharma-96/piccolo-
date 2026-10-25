@@ -1,0 +1,19 @@
+{
+  "unitTestsPassed": 45,
+  "finalBuildAndChecks": {
+    "build": 0,
+    "unit": 0,
+    "browser": 0,
+    "recovery": 0
+  },
+  "browserChecksPassed": 19,
+  "agentChecksPassed": 12,
+  "recoveryChecksPassed": 2,
+  "regressionExitCodes": {
+    "browser": 0,
+    "recovery": 0,
+    "agent": 0
+  },
+  "liveReport": "live-report.json",
+  "verification": "verification.json"
+}

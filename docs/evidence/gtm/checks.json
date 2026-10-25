@@ -1,0 +1,10 @@
+{
+  "unitPassed": 50,
+  "checks": {
+    "build": 0,
+    "browser": 0,
+    "recovery": 0
+  },
+  "browserPassed": 19,
+  "recoveryPassed": 2
+}

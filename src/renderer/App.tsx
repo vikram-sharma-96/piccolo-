@@ -250,13 +250,13 @@ function App() {
   const action = (action: Extract<Command, { type: "action" }>["action"]) =>
     void act({ type: "action", action });
   const page = (name: string) => {
-    if (name === "downloads" && active.url !== "piccolo://downloads") {
+    if (["downloads","agents","workspaces"].includes(name) && active.url !== `piccolo://${name}`) {
       setMenu(null);
-      const existing = state.tabs.find((t) => t.url === "piccolo://downloads");
+      const existing = state.tabs.find((t) => t.url === `piccolo://${name}`);
       void act(
         existing
           ? { type: "tab", action: "activate", id: existing.id }
-          : { type: "new-tab", url: "piccolo://downloads" },
+          : { type: "new-tab", url: `piccolo://${name}` },
       );
     } else navigate(`piccolo://${name}`);
   };
@@ -517,6 +517,7 @@ function App() {
           </button>
         </div>
       )}
+      {state.agentTask&&<div className="agent-taskbar" role="region" aria-label="Agent task controls"><span role="status">Agent · {state.agentTask.status} · step {state.agentTask.step}</span><button onClick={()=>page('agents')}>Open Agent</button>{['planning','acting','verifying','waiting-approval','paused'].includes(state.agentTask.status)&&<><button onClick={()=>void act({type:'agent',action:state.agentTask!.status==='paused'?'resume':'pause'})}>{state.agentTask.status==='paused'?'Resume':'Pause'}</button><button onClick={()=>void act({type:'agent',action:'takeover'})}>Take over</button><button onClick={()=>void act({type:'agent',action:'cancel'})}>Cancel</button></>}<button aria-label="Collapse agent task bar" onClick={()=>void act({type:'agent',action:'hide'})}>Collapse</button></div>}
       <div className="workspace">
         {state.settings.sidebarMode !== "off" && (
           <aside

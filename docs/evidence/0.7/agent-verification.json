@@ -1,0 +1,142 @@
+{
+  "date": "2026-10-25T08:59:08.048Z",
+  "agent": [
+    {
+      "name": "Ordinary browser does not load agent runtime or start provider processes",
+      "status": "Passed"
+    },
+    {
+      "name": "Actual application pairs its dedicated authenticated MCP client",
+      "status": "Passed"
+    },
+    {
+      "name": "Real AdaL plans and executes selected-tab research with MCP observations and verified artifact",
+      "status": "Passed"
+    },
+    {
+      "name": "Browser-control pairing cannot read agent context or operate provider approval controls",
+      "status": "Passed"
+    },
+    {
+      "name": "Real attached-image analysis produces source-linked findings after native user review",
+      "status": "Passed"
+    },
+    {
+      "name": "Unattached tabs/files and denied provider transmission never start a task",
+      "status": "Passed"
+    },
+    {
+      "name": "Real model uses page structure and approved input, recovers a controlled form error and verifies final state",
+      "status": "Passed"
+    },
+    {
+      "name": "Pause cancels a real condition wait, manual state changes are observed, resume verifies fresh state",
+      "status": "Passed"
+    },
+    {
+      "name": "Cancel interrupts an active provider and releases task resources",
+      "status": "Passed"
+    },
+    {
+      "name": "Light, Dark and System Agent UI, native view task bar and redacted export are usable",
+      "status": "Passed"
+    },
+    {
+      "name": "Task records are OS-encrypted, not plaintext or renderer storage",
+      "status": "Passed"
+    },
+    {
+      "name": "Completed-task history remains reviewable while the last engine is idle",
+      "status": "Passed"
+    }
+  ],
+  "coding": [
+    {
+      "name": "Real AdaL file edit → Git diff → approved validation → local preview → browser verification → shell cleanup, without commit",
+      "status": "Passed"
+    }
+  ],
+  "measurements": [
+    {
+      "name": "Explicitly attached image task",
+      "electronMiB": 720.09375,
+      "ownedProcessMiB": 1061.2317708333333,
+      "electronCpuPercent": 0.011950882189612544,
+      "approximateOwnedSingleCoreCpuPercent": 86.91325475599669,
+      "phases": [
+        "planning",
+        "planning",
+        "planning"
+      ]
+    },
+    {
+      "name": "After image task completion",
+      "electronMiB": 619.0065104166666,
+      "ownedProcessMiB": 720.0130208333334,
+      "electronCpuPercent": 0.08648064967513254,
+      "approximateOwnedSingleCoreCpuPercent": 0,
+      "phases": [
+        "completed",
+        "completed",
+        "completed"
+      ]
+    },
+    {
+      "name": "Active provider before cancel",
+      "electronMiB": 667.7330729166666,
+      "ownedProcessMiB": 1037.9036458333333,
+      "electronCpuPercent": 0.09334016908830789,
+      "approximateOwnedSingleCoreCpuPercent": 87.10426703372333,
+      "phases": [
+        "planning",
+        "planning",
+        "planning"
+      ]
+    },
+    {
+      "name": "After provider cleanup",
+      "electronMiB": 665.7994791666666,
+      "ownedProcessMiB": 769.66015625,
+      "electronCpuPercent": 0.06131668905597171,
+      "approximateOwnedSingleCoreCpuPercent": 0,
+      "phases": [
+        "canceled",
+        "canceled",
+        "canceled"
+      ]
+    }
+  ],
+  "codingMeasurements": [
+    {
+      "name": "fresh ordinary browser",
+      "electronMiB": 402.3072916666667,
+      "ownedProcessMiB": 409.6354166666667,
+      "electronCpuPercent": 0.01888543067246938
+    },
+    {
+      "name": "trusted coding workbench and JSON worker",
+      "electronMiB": 877.0442708333334,
+      "ownedProcessMiB": 815.671875,
+      "electronCpuPercent": 1.1602075678211312
+    },
+    {
+      "name": "coding with real terminal and local Node preview",
+      "electronMiB": 932.2604166666666,
+      "ownedProcessMiB": 1018.9088541666666,
+      "electronCpuPercent": 1.0125690322761216
+    },
+    {
+      "name": "workspace closed, preview tab remains",
+      "electronMiB": 445.1848958333333,
+      "ownedProcessMiB": 411.078125,
+      "electronCpuPercent": 0.1501882644072525
+    }
+  ],
+  "providerDescendantsAbsentAfterCleanup": [
+    "bun",
+    "conhost",
+    "adal-backend",
+    "conhost"
+  ],
+  "method": "Three short instrumented samples per state. Electron working sets and Windows descendant working sets can double-count shared pages. OS CPU estimate includes only matched surviving PIDs and is single-core normalized; not a power/soak benchmark. Native dialogs answered by isolated test harness; actual AdaL provider used."
+}

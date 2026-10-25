@@ -12,6 +12,7 @@ for (const name of [
   "coding",
   "coding-preload",
   "coding-terminal",
+  'agent',
 ])
   await build({
     entryPoints: [`src/main/${name}.ts`],

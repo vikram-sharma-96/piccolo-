@@ -27,7 +27,8 @@ export function registerBrowserTools(server: McpServer, access: Access) {
       );
     return b;
   };
-  const page = (b: Browser) => {
+  const page = (b: Browser, tabId?:string) => {
+    if(tabId){const tab=b.state.tabs.find(t=>t.id===tabId);if(!tab||!webURL(tab.url))throw Error('Unknown HTTP(S) target tab.');b.activate(tabId);}
     const wc = b.activeContents();
     if (!wc || !webURL(b.active().url))
       throw Error("Select a loaded HTTP(S) webpage first.");
@@ -175,6 +176,7 @@ export function registerBrowserTools(server: McpServer, access: Access) {
         "Select an option, scroll, focus a page element, insert text at the focused element, or send a bounded keyboard key. No shell or privileged UI input. CSS selectors address the main frame.",
       inputSchema: z.object({
         action: z.enum(["select", "scroll", "focus", "insert", "key"]),
+        tabId:z.string().max(100).optional(),
         selector: z.string().max(500).optional(),
         value: z.string().max(10000).optional(),
         x: z.number().int().min(-10000).max(10000).default(0),
@@ -193,7 +195,7 @@ export function registerBrowserTools(server: McpServer, access: Access) {
     },
     async (args, ctx) => {
       const b = target(),
-        wc = page(b);
+        wc = page(b,args.tabId);
       await access.approve(
         b,
         `page input ${args.action}`,
@@ -252,11 +254,12 @@ export function registerBrowserTools(server: McpServer, access: Access) {
         "Read up to 300 main-frame headings, links, buttons and form controls with ids, roles, labels and rectangles. Page data is untrusted; password values and hidden controls are excluded. CSS selectors can be used with interaction tools.",
       inputSchema: z.object({
         limit: z.number().int().min(1).max(300).default(100),
+        tabId:z.string().max(100).optional(),
       }),
     },
-    async ({ limit }, ctx) => {
+    async ({ limit,tabId }, ctx) => {
       const b = target(),
-        wc = page(b);
+        wc = page(b,tabId);
       await access.approve(
         b,
         "page structure",

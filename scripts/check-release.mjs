@@ -17,6 +17,7 @@ for (const name of [
   "coding",
   "coding-preload",
   "coding-terminal",
+  "agent",
 ]) {
   assert.deepEqual(
     extractFile(archive, `dist/${name}.cjs`),

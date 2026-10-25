@@ -1,0 +1,184 @@
+{
+  "artifactId": "fb2dfe9a-8574-48dd-b3c6-97acb1486a68",
+  "verified": true,
+  "matched": 25,
+  "mismatched": 0,
+  "missing": 0,
+  "cells": [
+    {
+      "row": 1,
+      "column": "name",
+      "status": "matched",
+      "expected": "name",
+      "actual": "name"
+    },
+    {
+      "row": 1,
+      "column": "product",
+      "status": "matched",
+      "expected": "product",
+      "actual": "product"
+    },
+    {
+      "row": 1,
+      "column": "pricing",
+      "status": "matched",
+      "expected": "pricing",
+      "actual": "pricing"
+    },
+    {
+      "row": 1,
+      "column": "source_url",
+      "status": "matched",
+      "expected": "source_url",
+      "actual": "source_url"
+    },
+    {
+      "row": 1,
+      "column": "status",
+      "status": "matched",
+      "expected": "status",
+      "actual": "status"
+    },
+    {
+      "row": 2,
+      "column": "name",
+      "status": "matched",
+      "expected": "ElevenLabs",
+      "actual": "ElevenLabs"
+    },
+    {
+      "row": 2,
+      "column": "product",
+      "status": "matched",
+      "expected": "AI audio platform offering text to speech, speech to text, sound effects, voice design, music and voice cloning.",
+      "actual": "AI audio platform offering text to speech, speech to text, sound effects, voice design, music and voice cloning."
+    },
+    {
+      "row": 2,
+      "column": "pricing",
+      "status": "matched",
+      "expected": "Pro: $99 per month (monthly billing)",
+      "actual": "Pro: $99 per month (monthly billing)"
+    },
+    {
+      "row": 2,
+      "column": "source_url",
+      "status": "matched",
+      "expected": "https://elevenlabs.io/pricing",
+      "actual": "https://elevenlabs.io/pricing"
+    },
+    {
+      "row": 2,
+      "column": "status",
+      "status": "matched",
+      "expected": "ok",
+      "actual": "ok"
+    },
+    {
+      "row": 3,
+      "column": "name",
+      "status": "matched",
+      "expected": "Otter",
+      "actual": "Otter"
+    },
+    {
+      "row": 3,
+      "column": "product",
+      "status": "matched",
+      "expected": "AI meeting notetaker with live transcription, speaker identification, and AI chat across meetings.",
+      "actual": "AI meeting notetaker with live transcription, speaker identification, and AI chat across meetings."
+    },
+    {
+      "row": 3,
+      "column": "pricing",
+      "status": "matched",
+      "expected": "Basic: Free",
+      "actual": "Basic: Free"
+    },
+    {
+      "row": 3,
+      "column": "source_url",
+      "status": "matched",
+      "expected": "https://otter.ai/pricing",
+      "actual": "https://otter.ai/pricing"
+    },
+    {
+      "row": 3,
+      "column": "status",
+      "status": "matched",
+      "expected": "ok",
+      "actual": "ok"
+    },
+    {
+      "row": 4,
+      "column": "name",
+      "status": "matched",
+      "expected": "Fireflies",
+      "actual": "Fireflies"
+    },
+    {
+      "row": 4,
+      "column": "product",
+      "status": "matched",
+      "expected": "AI meeting assistant that transcribes meetings, generates AI summaries, and provides meeting search.",
+      "actual": "AI meeting assistant that transcribes meetings, generates AI summaries, and provides meeting search."
+    },
+    {
+      "row": 4,
+      "column": "pricing",
+      "status": "matched",
+      "expected": "Pro: $10 per seat / month, billed annually",
+      "actual": "Pro: $10 per seat / month, billed annually"
+    },
+    {
+      "row": 4,
+      "column": "source_url",
+      "status": "matched",
+      "expected": "https://fireflies.ai/pricing",
+      "actual": "https://fireflies.ai/pricing"
+    },
+    {
+      "row": 4,
+      "column": "status",
+      "status": "matched",
+      "expected": "ok",
+      "actual": "ok"
+    },
+    {
+      "row": 5,
+      "column": "name",
+      "status": "matched",
+      "expected": "unknown",
+      "actual": "unknown"
+    },
+    {
+      "row": 5,
+      "column": "product",
+      "status": "matched",
+      "expected": "unknown",
+      "actual": "unknown"
+    },
+    {
+      "row": 5,
+      "column": "pricing",
+      "status": "matched",
+      "expected": "unknown",
+      "actual": "unknown"
+    },
+    {
+      "row": 5,
+      "column": "source_url",
+      "status": "matched",
+      "expected": "https://piccolo-unreachable.invalid/pricing",
+      "actual": "https://piccolo-unreachable.invalid/pricing"
+    },
+    {
+      "row": 5,
+      "column": "status",
+      "status": "matched",
+      "expected": "unreachable",
+      "actual": "unreachable"
+    }
+  ]
+}

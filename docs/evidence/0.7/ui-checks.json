@@ -1,0 +1,13 @@
+{
+  "profile": "C:\\Github Projects\\Piccolo\\test-results\\agent-1792918468302",
+  "results": [
+    {
+      "name": "Actual retained artifact opens, displays bytes/hash, traps keyboard focus and closes with Escape",
+      "status": "Passed"
+    },
+    {
+      "name": "Compact window uses one column without horizontal overflow under reduced motion",
+      "status": "Passed"
+    }
+  ]
+}

@@ -1,0 +1,90 @@
+{
+  "date": "2026-10-25T08:51:15.714Z",
+  "executable": "C:\\Github Projects\\Piccolo\\release\\0.7.0\\win-unpacked\\Piccolo.exe",
+  "results": [
+    {
+      "name": "agent-coding-smoke",
+      "status": "Passed",
+      "exitCode": 0,
+      "elapsedMs": 93638,
+      "log": "C:\\Github Projects\\Piccolo\\test-results\\0.7-agent-coding-smoke.log"
+    },
+    {
+      "name": "agent-smoke",
+      "status": "Passed",
+      "exitCode": 0,
+      "elapsedMs": 164624,
+      "log": "C:\\Github Projects\\Piccolo\\test-results\\0.7-agent-smoke.log"
+    },
+    {
+      "name": "agent-recovery-smoke",
+      "status": "Passed",
+      "exitCode": 0,
+      "elapsedMs": 4219,
+      "log": "C:\\Github Projects\\Piccolo\\test-results\\0.7-agent-recovery-smoke.log"
+    },
+    {
+      "name": "coding-smoke",
+      "status": "Passed",
+      "exitCode": 0,
+      "elapsedMs": 68996,
+      "log": "C:\\Github Projects\\Piccolo\\test-results\\0.7-coding-smoke.log"
+    },
+    {
+      "name": "smoke",
+      "status": "Passed",
+      "exitCode": 0,
+      "elapsedMs": 11491,
+      "log": "C:\\Github Projects\\Piccolo\\test-results\\0.7-smoke.log"
+    },
+    {
+      "name": "upgrade-smoke",
+      "status": "Passed",
+      "exitCode": 0,
+      "elapsedMs": 18491,
+      "log": "C:\\Github Projects\\Piccolo\\test-results\\0.7-upgrade-smoke.log"
+    },
+    {
+      "name": "mcp-smoke",
+      "status": "Passed",
+      "exitCode": 0,
+      "elapsedMs": 18853,
+      "log": "C:\\Github Projects\\Piccolo\\test-results\\0.7-mcp-smoke.log"
+    },
+    {
+      "name": "download-policy-smoke",
+      "status": "Passed",
+      "exitCode": 0,
+      "elapsedMs": 11009,
+      "log": "C:\\Github Projects\\Piccolo\\test-results\\0.7-download-policy-smoke.log"
+    },
+    {
+      "name": "appearance-audit",
+      "status": "Passed",
+      "exitCode": 0,
+      "elapsedMs": 31282,
+      "log": "C:\\Github Projects\\Piccolo\\test-results\\0.7-appearance-audit.log"
+    },
+    {
+      "name": "run-lifecycle",
+      "status": "Passed",
+      "exitCode": 0,
+      "elapsedMs": 3894,
+      "log": "C:\\Github Projects\\Piccolo\\test-results\\0.7-run-lifecycle.log"
+    },
+    {
+      "name": "performance",
+      "status": "Passed",
+      "exitCode": 0,
+      "elapsedMs": 58942,
+      "log": "C:\\Github Projects\\Piccolo\\test-results\\0.7-performance.log"
+    },
+    {
+      "name": "check-release",
+      "status": "Passed",
+      "exitCode": 0,
+      "elapsedMs": 7503,
+      "log": "C:\\Github Projects\\Piccolo\\test-results\\0.7-check-release.log"
+    }
+  ]
+}

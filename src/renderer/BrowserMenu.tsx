@@ -159,6 +159,7 @@ export function BrowserMenu({
           {item("Save and share", () => setSub("Save and share"), "›")}
           {group()}
           {item("More tools", () => setSub("More tools"), "›")}
+          {item('Agent workspace',()=>page('agents'))}
           {item("Sidebar", () => setSub("Sidebar"), "›")}
           {item("MCP Settings", () => page("integrations"))}
           {item("Performance", () => page("performance"))}

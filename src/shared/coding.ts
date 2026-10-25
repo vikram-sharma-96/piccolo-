@@ -1,6 +1,7 @@
 import { z } from "zod";
 const relative = z.string().max(2000);
 export const codingRequest = z.discriminatedUnion("action", [
+  z.object({action:z.literal('agent')}),
   z.object({ action: z.literal("manage") }),
   z.object({ action: z.literal("close") }),
   z.object({ action: z.literal("reload") }),
