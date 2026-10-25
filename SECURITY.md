@@ -1,0 +1,71 @@
+# Security
+
+## Download consent in 0.4
+
+Central main-process gating now pauses website downloads into owned UUID staging files until explicit approval; risky filename categories require an additional native warning. Floods are canceled/coalesced, with separate revocable multiple-download permission. Unknown sources are denied. Cancellation stops the DownloadItem and freezes terminal state before late callbacks; record removal is separate. Files are never automatically opened/executed, and completed destinations are never overwritten or automatically deleted. This is not malware/reputation scanning, and Electron's hook cannot promise zero bytes before pause. Crash-time staging/final-copy limitations and exact limits are documented in DOWNLOAD_PROTECTION.md.
+
+Explicit UI themes do not override website color preferences. The browser UI remains in its separate session. MCP's new section/menu inventory accepts only fixed enums and never exposes secret field values or permission-grant interactions. The accepted extension subset additionally rejects optional privilege grants and Firefox-specific manifests; failed managed installations clean their owned directory. See EXTENSION_COMPATIBILITY.md and APPLICATION_AUDIT.md for verified scope and remaining limitations.
+
+Proxy reachability probes use unique HTTPS URLs and disable response caching, so an old cached success cannot validate an unreachable new configuration. Failures restore the prior proxy configuration or pause normal-session networking until explicit disconnect; status distinguishes configuration restoration from a fresh reachability test.
+
+## Implemented controls
+
+- Remote websites: Node disabled, sandbox and context isolation enabled, web security enabled, no preload, no privileged IPC bridge.
+- Trusted UI: bundled static assets, restrictive CSP, no remote scripts, no frames, no object embeds, no arbitrary HTML rendering. Same-origin bitmap favicons are fetched through the browsing session, bounded, and exposed as data URLs. Private and cross-origin icons are suppressed. No external font/CDN requests are required.
+- IPC: Zod discriminated commands, bounded strings/collections, sender identity, top-frame and exact URL checks. No generic filesystem, shell, JavaScript evaluation or unrestricted IPC capability is exposed.
+- UI asset handlers: separate session registration, path traversal guard and restricted opaque wallpaper names. Remote sessions do not register either UI protocol.
+- URL entry: only known logical internal pages and HTTP/HTTPS addresses. Credentials embedded in URLs and executable/file/data schemes are rejected. HTTP is deliberately allowed and is not represented as a secure connection. Certificate errors use Chromium's default rejection behavior; no global ignore flags or bypass code.
+- Popups: default deny; only bounded HTTP/HTTPS creations after recent mouse/key input; 100 tabs per window, 12 windows. POST popups are denied. Recreated views do not share opener JavaScript privileges.
+- External protocols: only `mailto:` and `tel:`, bounded input, recent interaction, one pending prompt and a prompt interval, with explicit confirmation before opening an OS handler.
+- Permissions: check and request handlers, HTTPS main-frame prompts, safe default denial, inspectable origin decisions. Unknown capabilities, screen capture, USB/HID/serial, filesystem and other unsupported grants are denied. OS permission approval is still required when applicable.
+- Downloads: OS destination chooser or chosen download folder, sanitized filenames, timestamp prefix when saving automatically, persistent statuses, no automatic execution. Opening a completed existing file requires a separate explicit confirmation. Interrupted records do not imply cross-restart resumption.
+- Imports: validated customization schema; no imported JavaScript/HTML widgets. Download destinations and wallpaper asset references cannot be redirected by importing settings. Bookmark HTML uses a non-executing parser with input/count limits and HTTP/HTTPS filtering.
+- Private windows: unique nonpersistent partitions; no history, settings, bookmark or permission persistence. Private downloads remain normal user files. Renderer and tab listeners/timers are cleaned up at window close.
+- Database: worker thread, prepared SQL, WAL/checkpoint, schema validation at startup. No website passwords or AI-provider credentials are collected. Optional NASA keys use asynchronous Windows OS encryption outside SQLite. Exports contain ordinary user-entered notes/tasks/links and should be shared deliberately.
+
+## Validation and limits
+
+Automated tests cover unsafe URLs, malformed commands, settings defaults/validation, bookmark import, remote Node/bridge absence, private cookies/history, popup denial, native view bounds and packaged startup. See the actual `test-results` reports and README for reproducible commands. No penetration-test or comprehensive website-compatibility claim is made.
+
+Permission revocation prevents subsequent grants but does not forcibly stop an existing media stream; close/reload the page. A single media permission decision covers Electron's media category, rather than separate camera/microphone preferences. The trusted UI session is shared by all windows; private browsing state stays in main memory and separate site partitions, not UI web storage. Private favicon loads are intentionally omitted.
+
+Tab sleeping can lose unsaved website state and navigation history. It refuses captured, media-approved, pinned, audible and loading tabs, and is suspended for active downloads. Background throttling alone is not called discarding.
+
+The executable/installer are unsigned, no automatic security update mechanism is configured, and Electron must be upgraded regularly. macOS entitlements, Linux sandbox distribution, Windows enterprise policy, certificate UX, screen-reader behavior and adversarial multi-window stress need further validation before wider deployment. Default Electron fuses have not been hardened; the standard Node inspector remains available for local development/testing. This is a local browser foundation, not an audited replacement for a mature browser.
+
+## Version 0.2 integration controls
+
+- Extensions require native installation consent and use reviewed managed copies. Symlinks/junctions are rejected; limits are 1000 files, 50 MB, 12 levels and 20 installs. Full-file fingerprints are checked before load/enable. Unsupported background workers/scripts, native messaging, external-connect entry points, page overrides and MAIN-world injection are denied. File access is disabled, and loading never occurs in UI/private sessions. Arbitrary same-user compromise of the application/profile itself is outside this model.
+- The browser proxy applies to normal website traffic only. Private windows and direct NASA API/image requests are excluded. Failed reconfiguration retains the prior proxy; initial failure pauses normal network access until explicit disconnect. No OS network state or driver changes occur.
+- Daily wallpaper requires explicit replacement/network consent. API/image redirects are refused; only api.nasa.gov and apod.nasa.gov sources are used. Videos, copyright-marked images and large responses are skipped. Keys are encrypted using asynchronous Windows DPAPI-backed safeStorage, not returned to state, logs or exports. Other-user protection does not imply protection from arbitrary same-user code. Live testing returned NASA HTTP 500/429, so live image delivery is not claimed.
+- MCP server: disabled by default. Compatibility HTTP requires exact Host/Origin, constant-time Bearer authentication, a 64 KiB request cap and at most eight connections. Its persistent credential requires OS encryption; unavailable encryption fails closed. Explicit rotation cancels HTTP requests. Stdio IPC authenticates every connection with an Ed25519 challenge and a native user-paired key; knowing the pipe address/client name grants nothing. Keys have a Windows user-only directory ACL; Unix files/socket use restrictive modes. Public fingerprints and grants are stored separately from key files. Private access is a separate per-client grant. Revocation persists and closes that client's sockets. Disable closes endpoints while preserving the pairing list for later explicit re-enabling.
+- MCP tools: 21 tools with bounded schemas/results/timeouts/concurrency and cancellation. Full browser control is granted per authenticated client, with per-call approval as an alternative. Settings cannot change MCP grants, provider consent, local paths/assets or expose notes/provider secrets. No unrestricted shell, filesystem, credential-store, privileged evaluation or CDP command API exists. Download opening retains the browser's native confirmation. Page JavaScript dialog support is time-bounded and distinct from native permission/authentication prompts. Activity keeps 100 redacted tool/status/key-fingerprint entries without arguments, tokens or page contents.
+- Outbound MCP client: explicit loopback HTTP, no redirects or executable launching, validated arguments, bounded approval text and native per-call consent. Complex regex/reference schemas are rejected. It does not inherit any inbound client's browser-control grant.
+
+The adapter's authenticated local key is protected by OS user-account permissions, not a custom cryptographic vault. Arbitrary code already running as the same user can access that user's files, as with ordinary local stdio MCP configurations. Windows is tested; cross-platform permission behavior and adversarial OS-user isolation are not certified. A webpage is untrusted data and cannot pair a client or grant permissions. Already-issued browser actions cannot always be undone by cancellation. See MCP_SETUP.md for supported dialog/frame behavior and timeout limits.
+
+- Token copying is explicit. A one-shot 30-second check and server shutdown attempt to clear an unchanged copied token, preserving other clipboard content. The OS clipboard is not secure secret storage.
+
+### Extension compatibility matrix
+
+| Capability                                                               | Actual status                                                                     |
+| ------------------------------------------------------------------------ | --------------------------------------------------------------------------------- |
+| Unpacked MV3 isolated content script                                     | Verified HTTP injection, normal/private/UI isolation, enable/disable and restart  |
+| File integrity/removal                                                   | Managed copies and full-file fingerprints; changed code is rejected on enable     |
+| chrome.storage.local                                                     | Allowed by policy and Electron documentation; independent API behavior not tested |
+| MV2 content-only extensions                                              | Runtime loading attempted; not separately verified                                |
+| Background scripts/workers, native messaging and general privileged APIs | Rejected in this release                                                          |
+| Chrome Web Store / CRX / general Chrome parity                           | Unsupported; no store protections bypassed                                        |
+| Password save/autofill                                                   | No reviewed compatible adapter; unavailable, no vault/password collection         |
+
+References checked: [Electron extensions](https://www.electronjs.org/docs/latest/api/extensions), [extension loading](https://www.electronjs.org/docs/latest/api/extensions-api), [async safeStorage](https://www.electronjs.org/docs/latest/api/safe-storage), [NASA media policy](https://www.nasa.gov/nasa-brand-center/images-and-media/), [MCP transports](https://modelcontextprotocol.io/specification/latest/basic/transports), [MCP SDK v2](https://ts.sdk.modelcontextprotocol.io/v2/). Physical printing, provider-account VPN adapters, complete accessibility coverage and signed hardened releases remain unverified/deferred.
+# Coding workspace boundaries (0.6)
+
+The browser's 0.4 download, pairing and webpage isolation policies remain. Coding is lazy and separate: a sandboxed project-specific WebContentsView, real third-party web extension worker and optional native terminal utility process. Only the exact coding top frame receives the validated filesystem/terminal IPC adaptor. Remote preview pages have neither adaptor nor Node.
+
+Canonical-root filesystem checks reject path traversal, links/junctions, alternate streams and unsafe Windows names. Revision-checked atomic writes and editor versions guard concurrent changes. Automation additionally rejects sensitive paths and dirty buffers; bounded logs contain metadata only. Workspace permission is independent of browser permission, project-scoped and revocable. Client pairing revoke/restore clears workspace grants. Close, takeover and trust changes abort requests; completed effects are not rolled back.
+
+Extensions require native installation consent, compatible web manifests, bounded safe archive extraction and managed-copy integrity verification. Modified extensions are blocked and shown with an error; removal/reinstallation remains possible. Disabled extensions do not activate. The top-frame CSP has no eval; the isolated upstream worker bootstrap needs a narrowly scoped eval exception. Do not infer desktop-extension compatibility or OS-level confinement. Installed web extensions can read/edit selected-project files; a user-approved shell runs with user-account rights beyond that project. Every automated terminal input separately displays the full bounded input for approval. No automatic project tasks, dependency install or language-server download occurs.
+
+Git operations disable hooks, staging filters, external diff/textconv and signing. Explicit terminal commands can still run project code and use ambient Windows authority. Review commands and extensions before approving them. Detached services may outlive their parent process; inspect and stop those separately. See CODING_WORKSPACE.md for limits and CODING_EXTENSION_COMPATIBILITY.md for tested packages and license findings.
+

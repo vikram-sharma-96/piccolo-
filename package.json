@@ -1,0 +1,101 @@
+{
+  "name": "piccolo-browser",
+  "productName": "Piccolo",
+  "version": "0.6.0",
+  "private": true,
+  "description": "A personal desktop browser",
+  "author": "Piccolo",
+  "license": "UNLICENSED",
+  "main": "dist/main.cjs",
+  "scripts": {
+    "build": "tsc --noEmit && tsc --noEmit -p coding/tsconfig.json && node scripts/build.mjs",
+    "dev": "npm run build && node scripts/start.mjs",
+    "start": "node scripts/start.mjs",
+    "test": "tsx --test tests/*.test.ts",
+    "smoke": "node scripts/smoke.mjs",
+    "icons": "node scripts/icons.mjs",
+    "package": "npm run build && electron-builder --win dir",
+    "installer": "npm run build && electron-builder --win nsis",
+    "format": "prettier --write src tests scripts *.json *.md",
+    "lifecycle": "npm run build && node scripts/run-lifecycle.mjs",
+    "measure": "node scripts/performance.mjs",
+    "upgrade-smoke": "node scripts/upgrade-smoke.mjs",
+    "mcp-smoke": "node scripts/mcp-smoke.mjs",
+    "download-policy": "node scripts/download-policy-smoke.mjs",
+    "appearance-audit": "node scripts/appearance-audit.mjs",
+    "coding-smoke": "node scripts/coding-smoke.mjs"
+  },
+  "dependencies": {
+    "@lydell/node-pty": "1.2.0-beta.18",
+    "@modelcontextprotocol/client": "^2.4.0",
+    "@modelcontextprotocol/node": "^2.1.2",
+    "@modelcontextprotocol/server": "^2.4.0",
+    "ajv": "^8.20.0",
+    "htmlparser2": "^12.0.0",
+    "react": "19.3.1",
+    "react-dom": "19.3.1",
+    "semver": "7.8.5",
+    "yauzl": "3.4.0",
+    "zod": "^4.3.6"
+  },
+  "devDependencies": {
+    "@types/node": "^24.0.0",
+    "@types/react": "^19.0.0",
+    "@types/react-dom": "^19.0.0",
+    "@types/semver": "^7.8.0",
+    "@types/yauzl": "^3.4.0",
+    "electron": "45.0.0",
+    "electron-builder": "^26.0.12",
+    "esbuild": "^0.28.2",
+    "fflate": "0.8.3",
+    "playwright": "^1.56.0",
+    "png-to-ico": "^3.0.1",
+    "prettier": "^3.9.10",
+    "sharp": "^0.35.5",
+    "tsx": "^4.20.0",
+    "typescript": "^5.9.0",
+    "vite": "8.3.5"
+  },
+  "build": {
+    "appId": "app.piccolo.browser",
+    "productName": "Piccolo",
+    "directories": {
+      "output": "release/0.6.0"
+    },
+    "files": [
+      "dist/main.cjs",
+      "dist/preload.cjs",
+      "dist/database-worker.cjs",
+      "dist/ui/**/*",
+      "assets/**/*",
+      "package.json",
+      "dist/optional.cjs",
+      "dist/mcp.cjs",
+      "dist/mcp-stdio-entry.cjs",
+      "dist/coding.cjs",
+      "dist/coding-preload.cjs",
+      "dist/coding-terminal.cjs",
+      "dist/code/**/*"
+    ],
+    "asar": true,
+    "win": {
+      "icon": "assets/icon.ico",
+      "target": "nsis",
+      "signAndEditExecutable": true
+    },
+    "nsis": {
+      "oneClick": false,
+      "allowToChangeInstallationDirectory": true,
+      "installerIcon": "assets/icon.ico"
+    },
+    "mac": {
+      "icon": "assets/icon.icns"
+    },
+    "linux": {
+      "icon": "assets/icons"
+    },
+    "asarUnpack": [
+      "node_modules/@lydell/**/*"
+    ]
+  }
+}

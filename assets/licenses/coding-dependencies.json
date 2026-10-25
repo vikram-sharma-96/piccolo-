@@ -1,0 +1,427 @@
+[
+  {
+    "name": "@codingame/monaco-vscode-api",
+    "version": "38.0.4",
+    "license": "MIT",
+    "repository": {
+      "type": "git",
+      "url": "git+ssh://git@github.com/CodinGame/monaco-vscode-api.git"
+    }
+  },
+  {
+    "name": "@codingame/monaco-vscode-base-service-override",
+    "version": "38.0.4",
+    "license": "MIT",
+    "repository": {
+      "type": "git",
+      "url": "git+ssh://git@github.com/CodinGame/monaco-vscode-api.git"
+    }
+  },
+  {
+    "name": "@codingame/monaco-vscode-bulk-edit-service-override",
+    "version": "38.0.4",
+    "license": "MIT",
+    "repository": {
+      "type": "git",
+      "url": "git+ssh://git@github.com/CodinGame/monaco-vscode-api.git"
+    }
+  },
+  {
+    "name": "@codingame/monaco-vscode-configuration-service-override",
+    "version": "38.0.4",
+    "license": "MIT",
+    "repository": {
+      "type": "git",
+      "url": "git+ssh://git@github.com/CodinGame/monaco-vscode-api.git"
+    }
+  },
+  {
+    "name": "@codingame/monaco-vscode-css-default-extension",
+    "version": "38.0.4",
+    "license": "MIT",
+    "repository": {
+      "type": "git",
+      "url": "git+ssh://git@github.com/CodinGame/monaco-vscode-api.git"
+    }
+  },
+  {
+    "name": "@codingame/monaco-vscode-dialogs-service-override",
+    "version": "38.0.4",
+    "license": "MIT",
+    "repository": {
+      "type": "git",
+      "url": "git+ssh://git@github.com/CodinGame/monaco-vscode-api.git"
+    }
+  },
+  {
+    "name": "@codingame/monaco-vscode-environment-service-override",
+    "version": "38.0.4",
+    "license": "MIT",
+    "repository": {
+      "type": "git",
+      "url": "git+ssh://git@github.com/CodinGame/monaco-vscode-api.git"
+    }
+  },
+  {
+    "name": "@codingame/monaco-vscode-explorer-service-override",
+    "version": "38.0.4",
+    "license": "MIT",
+    "repository": {
+      "type": "git",
+      "url": "git+ssh://git@github.com/CodinGame/monaco-vscode-api.git"
+    }
+  },
+  {
+    "name": "@codingame/monaco-vscode-extensions-service-override",
+    "version": "38.0.4",
+    "license": "MIT",
+    "repository": {
+      "type": "git",
+      "url": "git+ssh://git@github.com/CodinGame/monaco-vscode-api.git"
+    }
+  },
+  {
+    "name": "@codingame/monaco-vscode-files-service-override",
+    "version": "38.0.4",
+    "license": "MIT",
+    "repository": {
+      "type": "git",
+      "url": "git+ssh://git@github.com/CodinGame/monaco-vscode-api.git"
+    }
+  },
+  {
+    "name": "@codingame/monaco-vscode-host-service-override",
+    "version": "38.0.4",
+    "license": "MIT",
+    "repository": {
+      "type": "git",
+      "url": "git+ssh://git@github.com/CodinGame/monaco-vscode-api.git"
+    }
+  },
+  {
+    "name": "@codingame/monaco-vscode-html-default-extension",
+    "version": "38.0.4",
+    "license": "MIT",
+    "repository": {
+      "type": "git",
+      "url": "git+ssh://git@github.com/CodinGame/monaco-vscode-api.git"
+    }
+  },
+  {
+    "name": "@codingame/monaco-vscode-javascript-default-extension",
+    "version": "38.0.4",
+    "license": "MIT",
+    "repository": {
+      "type": "git",
+      "url": "git+ssh://git@github.com/CodinGame/monaco-vscode-api.git"
+    }
+  },
+  {
+    "name": "@codingame/monaco-vscode-json-default-extension",
+    "version": "38.0.4",
+    "license": "MIT",
+    "repository": {
+      "type": "git",
+      "url": "git+ssh://git@github.com/CodinGame/monaco-vscode-api.git"
+    }
+  },
+  {
+    "name": "@codingame/monaco-vscode-json-language-features-default-extension",
+    "version": "38.0.4",
+    "license": "MIT",
+    "repository": {
+      "type": "git",
+      "url": "git+ssh://git@github.com/CodinGame/monaco-vscode-api.git"
+    }
+  },
+  {
+    "name": "@codingame/monaco-vscode-katex-common",
+    "version": "38.0.4",
+    "license": "MIT",
+    "repository": {
+      "type": "git",
+      "url": "git+ssh://git@github.com/CodinGame/monaco-vscode-api.git"
+    }
+  },
+  {
+    "name": "@codingame/monaco-vscode-keybindings-service-override",
+    "version": "38.0.4",
+    "license": "MIT",
+    "repository": {
+      "type": "git",
+      "url": "git+ssh://git@github.com/CodinGame/monaco-vscode-api.git"
+    }
+  },
+  {
+    "name": "@codingame/monaco-vscode-languages-service-override",
+    "version": "38.0.4",
+    "license": "MIT",
+    "repository": {
+      "type": "git",
+      "url": "git+ssh://git@github.com/CodinGame/monaco-vscode-api.git"
+    }
+  },
+  {
+    "name": "@codingame/monaco-vscode-layout-service-override",
+    "version": "38.0.4",
+    "license": "MIT",
+    "repository": {
+      "type": "git",
+      "url": "git+ssh://git@github.com/CodinGame/monaco-vscode-api.git"
+    }
+  },
+  {
+    "name": "@codingame/monaco-vscode-markers-service-override",
+    "version": "38.0.4",
+    "license": "MIT",
+    "repository": {
+      "type": "git",
+      "url": "git+ssh://git@github.com/CodinGame/monaco-vscode-api.git"
+    }
+  },
+  {
+    "name": "@codingame/monaco-vscode-model-service-override",
+    "version": "38.0.4",
+    "license": "MIT",
+    "repository": {
+      "type": "git",
+      "url": "git+ssh://git@github.com/CodinGame/monaco-vscode-api.git"
+    }
+  },
+  {
+    "name": "@codingame/monaco-vscode-quickaccess-service-override",
+    "version": "38.0.4",
+    "license": "MIT",
+    "repository": {
+      "type": "git",
+      "url": "git+ssh://git@github.com/CodinGame/monaco-vscode-api.git"
+    }
+  },
+  {
+    "name": "@codingame/monaco-vscode-search-service-override",
+    "version": "38.0.4",
+    "license": "MIT",
+    "repository": {
+      "type": "git",
+      "url": "git+ssh://git@github.com/CodinGame/monaco-vscode-api.git"
+    }
+  },
+  {
+    "name": "@codingame/monaco-vscode-storage-service-override",
+    "version": "38.0.4",
+    "license": "MIT",
+    "repository": {
+      "type": "git",
+      "url": "git+ssh://git@github.com/CodinGame/monaco-vscode-api.git"
+    }
+  },
+  {
+    "name": "@codingame/monaco-vscode-textmate-service-override",
+    "version": "38.0.4",
+    "license": "MIT",
+    "repository": {
+      "type": "git",
+      "url": "git+ssh://git@github.com/CodinGame/monaco-vscode-api.git"
+    }
+  },
+  {
+    "name": "@codingame/monaco-vscode-theme-defaults-default-extension",
+    "version": "38.0.4",
+    "license": "MIT",
+    "repository": {
+      "type": "git",
+      "url": "git+ssh://git@github.com/CodinGame/monaco-vscode-api.git"
+    }
+  },
+  {
+    "name": "@codingame/monaco-vscode-theme-service-override",
+    "version": "38.0.4",
+    "license": "MIT",
+    "repository": {
+      "type": "git",
+      "url": "git+ssh://git@github.com/CodinGame/monaco-vscode-api.git"
+    }
+  },
+  {
+    "name": "@codingame/monaco-vscode-typescript-basics-default-extension",
+    "version": "38.0.4",
+    "license": "MIT",
+    "repository": {
+      "type": "git",
+      "url": "git+ssh://git@github.com/CodinGame/monaco-vscode-api.git"
+    }
+  },
+  {
+    "name": "@codingame/monaco-vscode-view-banner-service-override",
+    "version": "38.0.4",
+    "license": "MIT",
+    "repository": {
+      "type": "git",
+      "url": "git+ssh://git@github.com/CodinGame/monaco-vscode-api.git"
+    }
+  },
+  {
+    "name": "@codingame/monaco-vscode-view-common-service-override",
+    "version": "38.0.4",
+    "license": "MIT",
+    "repository": {
+      "type": "git",
+      "url": "git+ssh://git@github.com/CodinGame/monaco-vscode-api.git"
+    }
+  },
+  {
+    "name": "@codingame/monaco-vscode-view-status-bar-service-override",
+    "version": "38.0.4",
+    "license": "MIT",
+    "repository": {
+      "type": "git",
+      "url": "git+ssh://git@github.com/CodinGame/monaco-vscode-api.git"
+    }
+  },
+  {
+    "name": "@codingame/monaco-vscode-view-title-bar-service-override",
+    "version": "38.0.4",
+    "license": "MIT",
+    "repository": {
+      "type": "git",
+      "url": "git+ssh://git@github.com/CodinGame/monaco-vscode-api.git"
+    }
+  },
+  {
+    "name": "@codingame/monaco-vscode-workbench-service-override",
+    "version": "38.0.4",
+    "license": "MIT",
+    "repository": {
+      "type": "git",
+      "url": "git+ssh://git@github.com/CodinGame/monaco-vscode-api.git"
+    }
+  },
+  {
+    "name": "@codingame/monaco-vscode-working-copy-service-override",
+    "version": "38.0.4",
+    "license": "MIT",
+    "repository": {
+      "type": "git",
+      "url": "git+ssh://git@github.com/CodinGame/monaco-vscode-api.git"
+    }
+  },
+  {
+    "name": "@types/trusted-types",
+    "version": "2.0.7",
+    "license": "MIT",
+    "repository": {
+      "type": "git",
+      "url": "https://github.com/DefinitelyTyped/DefinitelyTyped.git",
+      "directory": "types/trusted-types"
+    }
+  },
+  {
+    "name": "@vscode/diff",
+    "version": "0.0.2-7",
+    "license": "MIT",
+    "repository": {
+      "type": "git",
+      "url": "git+https://github.com/microsoft/vscode-packages.git",
+      "directory": "vscode-diff"
+    }
+  },
+  {
+    "name": "@vscode/iconv-lite-umd",
+    "version": "0.7.1",
+    "license": "MIT",
+    "repository": {
+      "type": "git",
+      "url": "git+https://github.com/Microsoft/vscode-iconv-lite-umd.git"
+    }
+  },
+  {
+    "name": "@xterm/addon-fit",
+    "version": "0.11.0",
+    "license": "MIT",
+    "repository": "https://github.com/xtermjs/xterm.js/tree/master/addons/addon-fit"
+  },
+  {
+    "name": "@xterm/xterm",
+    "version": "6.0.0",
+    "license": "MIT",
+    "repository": "https://github.com/xtermjs/xterm.js"
+  },
+  {
+    "name": "commander",
+    "version": "8.3.0",
+    "license": "MIT",
+    "repository": {
+      "type": "git",
+      "url": "https://github.com/tj/commander.js.git"
+    }
+  },
+  {
+    "name": "dompurify",
+    "version": "3.4.17",
+    "license": "(MPL-2.0 OR Apache-2.0)",
+    "repository": {
+      "type": "git",
+      "url": "git://github.com/cure53/DOMPurify.git"
+    }
+  },
+  {
+    "name": "jschardet",
+    "version": "3.1.4",
+    "license": "LGPL-2.1+",
+    "repository": {
+      "type": "git",
+      "url": "https://github.com/aadsm/jschardet.git"
+    }
+  },
+  {
+    "name": "katex",
+    "version": "0.18.2",
+    "license": "MIT",
+    "repository": {
+      "type": "git",
+      "url": "https://github.com/KaTeX/KaTeX.git"
+    }
+  },
+  {
+    "name": "marked",
+    "version": "14.0.0",
+    "license": "MIT",
+    "repository": "git://github.com/markedjs/marked.git"
+  },
+  {
+    "name": "@codingame/monaco-vscode-editor-api",
+    "version": "38.0.4",
+    "license": "MIT",
+    "repository": {
+      "type": "git",
+      "url": "git+ssh://git@github.com/CodinGame/monaco-vscode-api.git"
+    }
+  },
+  {
+    "name": "@codingame/monaco-vscode-extension-api",
+    "version": "38.0.4",
+    "license": "MIT",
+    "repository": {
+      "type": "git",
+      "url": "git+ssh://git@github.com/CodinGame/monaco-vscode-api.git"
+    }
+  },
+  {
+    "name": "@lydell/node-pty",
+    "version": "1.2.0-beta.18",
+    "license": "MIT",
+    "repository": {
+      "type": "git",
+      "url": "git://github.com/lydell/node-pty.git"
+    }
+  },
+  {
+    "name": "@lydell/node-pty-win32-x64",
+    "version": "1.2.0-beta.18",
+    "license": "MIT",
+    "repository": {
+      "type": "git",
+      "url": "git://github.com/lydell/node-pty.git"
+    }
+  }
+]

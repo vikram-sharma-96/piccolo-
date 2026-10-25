@@ -1,0 +1,20 @@
+node_modules/
+dist/
+release/
+test-results/
+*.log
+release-*/
+*.db
+*.db-*
+*.sqlite
+*.sqlite-*
+*.sqlite3
+*.lnk
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+.codex/
+.mcp.json
+live wallpaper/
